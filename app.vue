@@ -33,6 +33,29 @@
   </div>
 
   <div>
+    <h2>Update Project</h2>
+    <form @submit.prevent="updateProject">
+      <div>
+        <label for="id">Project ID : </label>
+        <input type="text" v-model="update.id" id="id" required />
+      </div>
+      <div>
+        <label for="name">Project Name : </label>
+        <input type="text" v-model="update.name" id="name" required />
+      </div>
+      <div>
+        <label for="description">Project Description : </label>
+        <textarea
+          name="description"
+          v-model="update.description"
+          id="description"
+        ></textarea>
+      </div>
+      <button type="submit">Update Project</button>
+    </form>
+  </div>
+
+  <div>
     <h1>Delete Project</h1>
     <form @submit.prevent="deleteProject">
       <!-- prevent refresh after submit -->
@@ -98,6 +121,53 @@ const createProject = async () => {
 
     // push data to frontend
     projects.value.push(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+const update = ref({ id: "", name: "", description: "" });
+
+const updateProject = async () => {
+  console.log(update.value);
+  try {
+    //ensure that update.value is a valid object
+    const projectData = {
+      name: update.value.name.trim(),
+      description: update.value.description.trim(),
+    };
+
+    const response = await fetch(
+      `http://localhost:5000/projects/${update.value.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(projectData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update project");
+    }
+
+    // Log the raw response text
+    const responseText = await response.text();
+    console.log("Raw Response:", responseText);
+
+    // Try parsing the JSON response
+    const data = JSON.parse(responseText);
+
+    // find the project in the projects array and update it
+    const index = projects.value.findIndex(
+      (project) => project._id === data._id
+    );
+    projects.value[index] = data;
+
+    // clear the update object
+    update.value = { id: "", name: "", description: "" };
   } catch (error) {
     console.error(error);
   }
