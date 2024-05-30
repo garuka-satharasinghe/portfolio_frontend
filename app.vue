@@ -32,6 +32,18 @@
     </form>
   </div>
 
+  <div>
+    <h1>Delete Project</h1>
+    <form @submit.prevent="deleteProject">
+      <!-- prevent refresh after submit -->
+      <div>
+        <label for="id">Project ID : </label>
+        <input type="text" v-model="deleteProjectId" id="id" required />
+      </div>
+      <button type="submit">Delete Project</button>
+    </form>
+  </div>
+
   <div v-if="pending1">Loading Blogs...</div>
   <div>
     <h2>Blogs</h2>
@@ -54,6 +66,7 @@ const {data:projects,pending,error}=useFetch('http://localhost:5000/projects')
 const {data:blogs,pending1,error1}=useFetch('http://localhost:5000/blogs')
 
 const newProject = ref({ name: "", description: "" });
+
 
 const createProject = async () => {
   console.log(newProject.value);
@@ -89,6 +102,43 @@ const createProject = async () => {
     console.error(error);
   }
 };
+
+const deleteProjectId = ref("");
+
+const deleteProject = async () => {
+  console.log(deleteProjectId.value);
+  try {
+    const response = await fetch(
+      `http://localhost:5000/projects/${deleteProjectId.value}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to delete project");
+    }
+
+    // Log the raw response text
+    const responseText = await response.text();
+    console.log("Raw Response:", responseText);
+
+    // Try parsing the JSON response
+    const data = JSON.parse(responseText);
+
+    // remove the project from the projects array
+    const index = projects.value.findIndex(
+      (project) => project._id === data._id
+    );
+    projects.value.splice(index, 1);
+
+    // clear the deleteId object
+    deleteProjectId.value = "";
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 </script>
 
 <style>
