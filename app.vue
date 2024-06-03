@@ -6,6 +6,7 @@
     <h2>Projects</h2>
     <ul>
       <li v-for="project in projects" :key="project.name">
+        <p>{{ project._id }}</p>
         <h2>{{ project.name }}</h2>
         <p>{{ project.description }}</p>
       </li>
@@ -37,7 +38,12 @@
     <form @submit.prevent="updateProject">
       <div>
         <label for="id">Project ID : </label>
-        <input type="text" v-model="update.id" id="id" required />
+        
+        <select v-model="update.id" id="id" required>
+          <option v-for="project in projects" :key="project._id" :value="project._id">
+            {{ project.name }}
+          </option>
+        </select>
       </div>
       <div>
         <label for="name">Project Name : </label>
@@ -61,7 +67,12 @@
       <!-- prevent refresh after submit -->
       <div>
         <label for="id">Project ID : </label>
-        <input type="text" v-model="deleteProjectId" id="id" required />
+        
+        <select v-model="deleteProjectId" id="id" required>
+          <option v-for="project in projects" :key="project._id" :value="project._id">
+            {{ project.name }}
+          </option>
+        </select>
       </div>
       <button type="submit">Delete Project</button>
     </form>
