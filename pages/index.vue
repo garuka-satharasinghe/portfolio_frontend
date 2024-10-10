@@ -632,9 +632,7 @@ const {
   data: projects,
   pending,
   error,
-} = useFetch(
-  "https://vercel.live/link/portfolio-backend-mauve-mu.vercel.app?via=project-dashboard-alias-list&p=1/projects"
-);
+} = useFetch("http://localhost:5000/projects");
 const {
   data: blogs,
   pending1,
