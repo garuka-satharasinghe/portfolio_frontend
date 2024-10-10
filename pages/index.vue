@@ -632,7 +632,9 @@ const {
   data: projects,
   pending,
   error,
-} = useFetch("http://localhost:5000/projects");
+} = useFetch(
+  "https://vercel.live/link/portfolio-backend-mauve-mu.vercel.app?via=project-dashboard-alias-list&p=1/projects"
+);
 const {
   data: blogs,
   pending1,
@@ -650,16 +652,13 @@ const createProject = async () => {
       description: newProject.value.description.trim(),
     };
 
-    const response = await fetch(
-      "https://vercel.live/link/portfolio-backend-mauve-mu.vercel.app?via=project-dashboard-alias-list&p=1/projects",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(projectData),
-      }
-    );
+    const response = await fetch("http://localhost:5000/projects", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(projectData),
+    });
 
     if (!response.ok) {
       throw new Error("Failed to create project");
