@@ -632,7 +632,9 @@ const {
   data: projects,
   pending,
   error,
-} = useFetch("http://localhost:5000/projects");
+} = useFetch(
+  "https://portfoliobackend-production-0d8d.up.railway.app/projects"
+);
 const {
   data: blogs,
   pending1,
