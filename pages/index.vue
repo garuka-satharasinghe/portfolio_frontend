@@ -639,7 +639,7 @@ const {
   data: blogs,
   pending1,
   error1,
-} = useFetch("http://localhost:5000/blogs");
+} = useFetch("https://portfoliobackend-production-0d8d.up.railway.app/blogs");
 
 const newProject = ref({ name: "", description: "" });
 
