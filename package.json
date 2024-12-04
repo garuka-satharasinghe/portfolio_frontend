@@ -10,7 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "nuxt": "^3.11.2",
+    "sweetalert2": "^11.14.4",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
