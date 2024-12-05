@@ -266,7 +266,7 @@
                 <div class="col-span-2 sm:col-start-3 mb-0 flex justify-center">
                   <img
                     class="inline-block max-sm:max-h-36 max-sm:max-w-36 max-w-52 max-h-52 rounded-full ring-2 ring-white"
-                    src="https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1733356800&v=beta&t=rIGxQCIy46ll9LS6PqySs67xEoD5uw-suZe4HIGjqCk"
+                    src="https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1738800000&v=beta&t=PrU4Py7pq_MujxF1Z2LsndIuux2x3dg87-JDYh0UBt0"
                     alt=""
                   />
                 </div>
