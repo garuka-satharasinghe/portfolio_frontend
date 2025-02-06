@@ -3,7 +3,7 @@
     <div
       class="fixed z-50 w-52 h-12 max-w-lg -translate-x-1/2 backdrop-blur-xl bg-black/1 border border-gray-300 rounded-2xl shadow-2xl bottom-4 left-1/2"
     >
-      <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
+      <div class="grid h-full max-w-lg grid-cols-4 mx-auto">
         <button
           @click="scrollToSection('home')"
           data-tooltip-target="tooltip1"
@@ -86,56 +86,7 @@
           Wallet
           <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
-        <button
-          data-tooltip-target="tooltip-settings"
-          type="button"
-          class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-300 group"
-        >
-          <svg
-            class="h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <path
-                d="M12 4.5L2 9.5L12 14.5L22 9.5L12 4.5Z"
-                stroke="#494c4e"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-              <path
-                d="M19 11V16L12 19.5L5 16V11"
-                stroke="#494c4e"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-              <path
-                d="M22 14V18"
-                stroke="#494c4e"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </g>
-          </svg>
-          <span class="sr-only">Settings</span>
-        </button>
-        <div
-          id="tooltip-settings"
-          role="tooltip"
-          class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-        >
-          Settings
-        </div>
+
         <button
           @click="scrollToSection('proj')"
           data-tooltip-target="tooltip-settings"
@@ -266,7 +217,7 @@
                 <div class="col-span-2 sm:col-start-3 mb-0 flex justify-center">
                   <img
                     class="inline-block max-sm:max-h-36 max-sm:max-w-36 max-w-52 max-h-52 rounded-full ring-2 ring-white"
-                    src="https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1738800000&v=beta&t=PrU4Py7pq_MujxF1Z2LsndIuux2x3dg87-JDYh0UBt0"
+                    src="https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1744243200&v=beta&t=DnfEOyHpmiuf3mPgTncf85gW7Wg9qfsvRpf4vtjXcKE"
                     alt=""
                   />
                 </div>
@@ -438,13 +389,25 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto max-w-2xl text-center mb-20">
             <p
-              class="mt-2 text-pretty text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-balance"
+              class="mt-2 text-pretty text-4xl font-bold tracking-tight text-gray-700 sm:text-5xl lg:text-balance"
             >
-              Technologies
+              <span class="mx-1 relative inline-block stroke-current">
+                Technologies
+                <svg
+                  class="text-indigo-500 absolute -bottom-0.5 w-full max-h-1.5"
+                  viewBox="0 0 55 5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0.652466 4.00002C15.8925 2.66668 48.0351 0.400018 54.6853 2.00002"
+                    stroke-width="2"
+                  ></path>
+                </svg>
+              </span>
+
+              I work with
             </p>
-            <h2 class="text-base/7 font-semibold text-indigo-600">
-              I Work With
-            </h2>
           </div>
 
           <div
@@ -670,89 +633,6 @@
       </div>
     </section>
 
-    <section id="proj">
-      <div class="bg-white py-24 sm:py-32">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <div class="mx-auto max-w-2xl lg:text-center">
-            <h2 class="text-base font-semibold leading-7 text-indigo-600"></h2>
-            <p
-              class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-            >
-              Projects
-            </p>
-          </div>
-          <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-            <dl
-              class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16"
-            >
-              <div
-                v-for="project in projects"
-                :key="project.name"
-                class="relative pl-16"
-              >
-                <dt class="text-base font-semibold leading-7 text-gray-900">
-                  {{ project.name }}
-                </dt>
-                <dd class="mt-2 text-base leading-7 text-gray-600">
-                  {{ project.description }}
-                </dd>
-              </div>
-            </dl>
-          </div>
-
-          <!--
-      <div
-        class="grid grid-cols-2 mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl"
-      >
-        <div
-          class="max-w-sm m-2 bg-white border border-gray-200 rounded-lg"
-          v-for="project in projects"
-          :key="project.name"
-        >
-          <a href="#">
-            <img
-              class="rounded-t-lg"
-              src="https://media.licdn.com/dms/image/v2/D562DAQGik8B9N-woNg/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1719600827257?e=1728331200&v=beta&t=eeeaZb4zBHdmxYWrxlj80nwfSGjYB3SyoCaXREZ_2pQ"
-              alt=""
-            />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                {{ project.name }}
-              </h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {{ project.description }}
-            </p>
-            <a
-              href="#"
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-sky-700 rounded-lg hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-            >
-              LinkedIn
-              <svg
-                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div> -->
-        </div>
-      </div>
-    </section>
-
     <!--
   <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -881,7 +761,7 @@
                       v-model="update.description"
                       id="description"
                       class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
+                      />
                   </div>
                   <p class="mt-3 text-sm leading-6 text-gray-600">
                     Write a few sentences about project.
@@ -953,41 +833,328 @@
     </div>
   </div> -->
 
-    <section id="blog">
-      <div v-if="pending1">Loading Blogs...</div>
-      <div class="bg-white py-24 sm:py-32">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <div class="mx-auto max-w-2xl lg:mx-0">
-            <h2
-              class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+    <section
+      id="proj"
+      class="text-white w-full grid place-content-center pt-20"
+    >
+      <div class="mx-auto max-w-2xl lg:text-center">
+        <h1 class="text-base font-semibold leading-7 text-indigo-600"></h1>
+        <p
+          class="mt-2 text-4xl font-bold tracking-tight text-gray-700 sm:text-5xl"
+        >
+          <span class="mx-1 relative inline-block stroke-current">
+            Projects
+            <svg
+              class="text-indigo-500 absolute -bottom-0.5 w-full max-h-1.5"
+              viewBox="0 0 55 5"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
             >
-              From the blog
-            </h2>
-          </div>
+              <path
+                d="M0.652466 4.00002C15.8925 2.66668 48.0351 0.400018 54.6853 2.00002"
+                stroke-width="2"
+              ></path>
+            </svg>
+          </span>
+        </p>
+      </div>
+    </section>
+    <!-- <section class="snap-y snap-mandatory">
+      <div class="flex flex-col md:flex-row h-[300vh]">
+        
+        <div
+          class="sticky top-0 md:w-1/2 flex items-center justify-center h-screen"
+        >
+          <transition name="fade" mode="out-in">
+            <img
+              v-if="currentPhoto"
+              :key="currentPhoto"
+              :src="currentPhoto"
+              alt="Teaser Image"
+              class="w-3/4 rounded-lg shadow-lg opacity-100 scale-100 transition-opacity duration-500 ease-in-out"
+            />
+          </transition>
+        </div>
+
+        
+        <div class="md:w-1/2">
           <div
-            class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+            v-for="(section, index) in sections"
+            :key="index"
+            :data-photo="section.photo"
+            class="h-screen flex flex-col items-center justify-center p-4 snap-center"
           >
-            <article
-              v-for="blog in blogs"
-              :key="blog.name"
-              class="flex max-w-xl flex-col items-start justify-between"
+            <p class="text-xl font-semibold text-gray-900 mb-4">
+              {{ section.text }}
+            </p>
+            <p class="text-sm text-gray-500 mb-4">{{ section.paragraph }}</p>
+            <button
+              class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-300"
             >
-              <div class="group relative">
-                <h3
-                  class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600"
-                >
-                  <span class="absolute inset-0" />
-                  {{ blog.title }}
-                </h3>
-                <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-                  {{ blog.content }}
-                </p>
-              </div>
-            </article>
+              {{ section.buttonText }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="snap-y snap-mandatory">
+      <div class="flex flex-col sm:flex-row sm:h-[200vh]">
+        <!-- Sticky Image -->
+        <div
+          class="sticky top-0 sm:w-1/2 max-sm:py-8 flex items-center justify-center sm:h-screen bg-white"
+        >
+          <transition name="fade" mode="out-in">
+            <img
+              v-if="currentPhoto"
+              :key="currentPhoto"
+              :src="currentPhoto"
+              alt="Teaser Image"
+              class="w-2/3 sm:w-3/4 rounded-lg opacity-100 scale-100 transition-opacity duration-500 ease-in-out"
+            />
+          </transition>
+        </div>
+
+        <!-- Text Sections -->
+        <div class="sm:w-1/2">
+          <div
+            v-for="project in projects"
+            :key="project.name"
+            :data-photo="
+              'data:' + project.img.contentType + ';base64,' + project.img.data
+            "
+            class="sm:h-screen flex flex-col items-center sm:items-start justify-center p-10 sm:p-20 sm:pl-5 snap-center"
+          >
+            <p class="text-xl font-semibold text-gray-700 mb-4">
+              {{ project.name }}
+            </p>
+            <p class="text-sm text-gray-500 mb-6">{{ project.description }}</p>
+            <a
+              :href="project.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 border border-gray-200 bg-black/5 text-gray-700 rounded-lg hover:bg-white transition-colors duration-300"
+            >
+              <svg
+                class="w-5 h-5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.28h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.51-2.23 3.06v5.6h-3v-10h2.88v1.36h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.58v5.6z"
+                />
+              </svg>
+              LinkedIn
+            </a>
           </div>
         </div>
       </div>
     </section>
+
+    <section id="blog">
+      <div v-if="pending1">Loading Blogs...</div>
+      <div class="bg-white pb-24 sm:pb-24">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="justify-items-center lg:mx-0">
+            <h2
+              class="mt-2 text-4xl font-bold tracking-tight text-gray-700 sm:text-5xl"
+            >
+              From the
+              <span class="mx-1 relative inline-block stroke-current">
+                blog
+                <svg
+                  class="text-indigo-500 absolute -bottom-0.5 w-full max-h-1.5"
+                  viewBox="0 0 55 5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0.652466 4.00002C15.8925 2.66668 48.0351 0.400018 54.6853 2.00002"
+                    stroke-width="2"
+                  ></path>
+                </svg>
+              </span>
+            </h2>
+          </div>
+          <div
+            class="justify-items-center mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 border-gray-200 lg:max-w-none md:grid-cols-2 lg:grid-cols-3"
+          >
+            <div
+              class="relative mt-4 h-[300px] group ml-0 mr-auto dark:bg-black bg-white dark:border-0 border overflow-hidden rounded-md dark:text-white text-black"
+              v-for="blog in blogs"
+              :key="blog.name"
+            >
+              <figure class="w-full h-full rounded-md overflow-hidden">
+                <img
+                  src="https://neilpatel.com/wp-content/uploads/2017/07/corporatepersonalblog.jpg"
+                  alt="shoes"
+                  width="600"
+                  height="600"
+                  class="h-full w-full scale-105 group-hover:scale-100 rounded-lg object-cover transition-all duration-300"
+                />
+              </figure>
+              <div
+                class="absolute top-0 left-0 w-full h-full transition-all duration-300 bg-gradient-to-b from-[#2c1f4225] via-[#142d805b] to-[#000000]"
+              ></div>
+              <article
+                class="p-4 space-y-2 absolute -bottom-10 group-hover:bottom-0 transition-all duration-300"
+              >
+                <h2 className="text-xl font-semibold">
+                  {{ blog.title }}
+                </h2>
+                <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-00">
+                  {{ blog.content }}
+                </p>
+                <a
+                  href="#"
+                  class="text-base dark:text-white text-blue-600 font-normal group-hover:opacity-100 opacity-0 translate-y-2 group-hover:translate-y-0 pt-2 flex gap-1 transition-all duration-300"
+                >
+                  Read Story
+                </a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="text-gray-700 py-10 px-6 md:px-16 lg:px-32 relative overflow-hidden h-[26rem]"
+    >
+      <div class="absolute inset-0">
+        <div
+          class="w-full h-full bg-[url('/path-to-your-texture.png')] opacity-40"
+        ></div>
+      </div>
+
+      <div
+        class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+        aria-hidden="true"
+      >
+        <div
+          class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+          style="
+            clip-path: polygon(
+              74.1% 44.1%,
+              100% 61.6%,
+              97.5% 26.9%,
+              85.5% 0.1%,
+              80.7% 2%,
+              72.5% 32.5%,
+              60.2% 62.4%,
+              52.4% 68.1%,
+              47.5% 58.3%,
+              45.2% 34.5%,
+              27.5% 76.7%,
+              0.1% 64.9%,
+              17.9% 100%,
+              27.6% 76.8%,
+              76.1% 97.7%,
+              74.1% 44.1%
+            );
+          "
+        />
+      </div>
+
+      <div
+        class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+        aria-hidden="true"
+      >
+        <div
+          class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+          style="
+            clip-path: polygon(
+              74.1% 44.1%,
+              100% 61.6%,
+              97.5% 26.9%,
+              85.5% 0.1%,
+              80.7% 2%,
+              72.5% 32.5%,
+              60.2% 62.4%,
+              52.4% 68.1%,
+              47.5% 58.3%,
+              45.2% 34.5%,
+              27.5% 76.7%,
+              0.1% 64.9%,
+              17.9% 100%,
+              27.6% 76.8%,
+              76.1% 97.7%,
+              74.1% 44.1%
+            );
+          "
+        />
+      </div>
+
+      <div
+        class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-16 lg:gap-24"
+      >
+        <div class="flex space-x-4">
+          <a
+            href="https://www.linkedin.com/in/garuka-satharasinghe-b559a923b"
+            target="_blank"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              class="h-7 text-gray-400 hover:text-blue-800 transition-colors duration-300"
+            >
+              <path
+                fill="currentColor"
+                d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+              />
+            </svg>
+          </a>
+
+          <a href="https://github.com/garuka-satharasinghe" target="_blank">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 496 512"
+              class="h-7 text-gray-400 hover:text-black transition-colors duration-300"
+            >
+              <path
+                fill="currentColor"
+                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+              />
+            </svg>
+          </a>
+
+          <a
+            href="https://web.facebook.com/garuka.satharasinghe.2002"
+            target="_blank"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              class="h-7 text-gray-400 hover:text-blue-600 transition-colors duration-300"
+            >
+              <path
+                fill="currentColor"
+                d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <div>
+          <p class="text-sm">Contact me</p>
+          <a
+            href="mailto:methman2002@gmail.com"
+            class="text-lg font-semibold underline"
+            >methman2002@gmail.com</a
+          >
+        </div>
+      </div>
+      <div class="relative z-10 mt-8 border-t border-black/20 pt-4">
+        <p class="text-xs">&copy; 2024 {{ name }}. All rights reserved.</p>
+      </div>
+      <h1
+        class="absolute bottom-0 left-0 right-0 text-[4rem] sm:text-[5rem] md:text-[8rem] lg:text-[10rem] font-bold text-black/10 leading-[3rem] sm:leading-[4rem] md:leading-[7rem] lg:leading-[8rem] tracking-tight"
+      >
+        {{ name }}
+      </h1>
+    </footer>
+
     <!--
     <div v-if="pending">Loading Projects...</div>
     <div>
@@ -1095,6 +1262,30 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+
+const currentPhoto = ref(null);
+
+const handleScroll = () => {
+  const sectionElements = document.querySelectorAll("[data-photo]");
+  sectionElements.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+    if (
+      rect.top <= window.innerHeight / 2 &&
+      rect.bottom >= window.innerHeight / 2
+    ) {
+      const photo = section.getAttribute("data-photo");
+      if (currentPhoto.value !== photo) {
+        currentPhoto.value = photo;
+      }
+    }
+  });
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId);
   if (element) {
@@ -1104,8 +1295,6 @@ const scrollToSection = (sectionId) => {
     });
   }
 };
-
-import { ref } from "vue";
 
 const name = "Garuka Satharasinghe";
 const {
@@ -1242,6 +1431,15 @@ const deleteProject = async () => {
 </script>
 
 <style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0px);

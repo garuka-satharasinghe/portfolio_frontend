@@ -44,6 +44,36 @@
                   Write a few sentences about project.
                 </p>
               </div>
+              <div class="col-span-full">
+                <label
+                  for="link"
+                  class="block text-sm font-medium leading-6 text-gray-900"
+                  >Project Link</label
+                >
+                <div class="mt-2">
+                  <input
+                    type="text"
+                    v-model="newProject.link"
+                    id="link"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div class="col-span-full">
+                <label
+                  for="img"
+                  class="block text-sm font-medium leading-6 text-gray-900"
+                  >Project Image</label
+                >
+                <div class="mt-2">
+                  <input
+                    type="file"
+                    @change="handleFileUpload"
+                    id="img"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -57,6 +87,9 @@
           </button>
         </div>
       </form>
+      <p v-if="message" class="mt-3 text-sm leading-6 text-green-600">
+        {{ message }}
+      </p>
     </div>
 
     <form
@@ -122,9 +155,36 @@
                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
-              <p class="mt-3 text-sm leading-6 text-gray-600">
-                Write a few sentences about project.
-              </p>
+            </div>
+            <div class="col-span-full">
+              <label
+                for="link"
+                class="block text-sm font-medium leading-6 text-gray-900"
+                >Updated Project Link</label
+              >
+              <div class="mt-2">
+                <input
+                  type="text"
+                  v-model="update.link"
+                  id="link"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div class="col-span-full">
+              <label
+                for="img"
+                class="block text-sm font-medium leading-6 text-gray-900"
+                >Updated Project Image</label
+              >
+              <div class="mt-2">
+                <input
+                  type="file"
+                  @change="handleFileUpload"
+                  id="img"
+                  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -195,9 +255,10 @@ import { useRouter } from "vue-router";
 
 // Create state variables
 const projects = ref([]);
-const newProject = ref({ name: "", description: "" });
-const update = ref({ id: "", name: "", description: "" });
+const newProject = ref({ name: "", description: "", link: "", img: null });
+const update = ref({ id: "", name: "", description: "", link: "", img: null });
 const deleteProjectId = ref("");
+const message = ref("");
 
 const router = useRouter();
 
@@ -208,39 +269,55 @@ const fetchProjects = async () => {
   projects.value = data;
 };
 
-// onMounted(() => {
-//   // Check if logged in, otherwise redirect to login
-//   const token = localStorage.getItem("authToken");
-//   if (!token) {
-//     router.push("/$login");
-//   } else {
-//     fetchProjects();
-//   }
-// });
-
-onMounted(() => {
-  fetchProjects();
-});
+// Handle file upload
+const handleFileUpload = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    newProject.value.img = file;
+    update.value.img = file;
+  }
+};
 
 // Create project function
 const createProject = async () => {
+  const formData = new FormData();
+  formData.append("name", newProject.value.name);
+  formData.append("description", newProject.value.description);
+  formData.append("link", newProject.value.link);
+  if (newProject.value.img) {
+    formData.append("img", newProject.value.img);
+  }
+
   const response = await fetch("http://localhost:5000/projects", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newProject.value),
+    body: formData,
   });
   const data = await response.json();
   projects.value.push(data);
+
+  // Display success message and clear fields
+  message.value = "Project created successfully!";
+  newProject.value = { name: "", description: "", link: "", img: null };
+
+  // Clear file input
+  document.getElementById("img").value = "";
 };
 
 // Update project function
 const updateProject = async () => {
+  const formData = new FormData();
+  formData.append("name", update.value.name);
+  formData.append("description", update.value.description);
+  formData.append("link", update.value.link);
+  if (update.value.img) {
+    formData.append("img", update.value.img);
+  }
+
   const response = await fetch(
     `http://localhost:5000/projects/${update.value.id}`,
     {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(update.value),
+      body: formData,
     }
   );
   const data = await response.json();
@@ -257,6 +334,10 @@ const deleteProject = async () => {
     (p) => p._id !== deleteProjectId.value
   );
 };
+
+onMounted(() => {
+  fetchProjects();
+});
 </script>
 
 <style></style>
