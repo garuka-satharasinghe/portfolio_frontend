@@ -633,206 +633,6 @@
       </div>
     </section>
 
-    <!--
-  <div class="bg-white py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div
-        class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-      >
-        <div class="relative isolate px-6 pt-14 lg:px-8">
-          <form @submit.prevent="createProject">
-            <div class="space-y-12">
-              <div class="border-b border-gray-900/10 pb-12">
-                <h2 class="text-base font-semibold leading-7 text-gray-900">
-                  Create New Project
-                </h2>
-                <div
-                  class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
-                >
-                  <div class="sm:col-span-3">
-                    <label
-                      for="name"
-                      class="block text-sm font-medium leading-6 text-gray-900"
-                      >Project Name</label
-                    >
-                    <div class="mt-2">
-                      <input
-                        type="text"
-                        v-model="newProject.name"
-                        id="name"
-                        required
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-span-full">
-                    <label
-                      for="description"
-                      class="block text-sm font-medium leading-6 text-gray-900"
-                      >Project Description</label
-                    >
-                    <div class="mt-2">
-                      <textarea
-                        name="description"
-                        v-model="newProject.description"
-                        id="description"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                    <p class="mt-3 text-sm leading-6 text-gray-600">
-                      Write a few sentences about project.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-6 flex items-center justify-end gap-x-6">
-              <button
-                type="submit"
-                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Create Project
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <form
-          class="relative isolate px-6 pt-14 lg:px-8"
-          @submit.prevent="updateProject"
-        >
-          <div class="space-y-12">
-            <div class="border-b border-gray-900/10 pb-12">
-              <h2 class="text-base font-semibold leading-7 text-gray-900">
-                Update Project
-              </h2>
-              <div
-                class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
-              >
-                <div class="sm:col-span-3">
-                  <label
-                    for="id"
-                    class="block text-sm font-medium leading-6 text-gray-900"
-                    >Project Name</label
-                  >
-                  <div class="mt-2">
-                    <select
-                      v-model="update.id"
-                      id="id"
-                      required
-                      class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                    >
-                      <option
-                        v-for="project in projects"
-                        :key="project._id"
-                        :value="project._id"
-                      >
-                        {{ project.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="sm:col-span-3">
-                  <label
-                    for="name"
-                    class="block text-sm font-medium leading-6 text-gray-900"
-                    >Updated Project Name</label
-                  >
-                  <div class="mt-2">
-                    <input
-                      type="text"
-                      v-model="update.name"
-                      id="name"
-                      required
-                      class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div class="col-span-full">
-                  <label
-                    for="description"
-                    class="block text-sm font-medium leading-6 text-gray-900"
-                    >Updated Project Description</label
-                  >
-                  <div class="mt-2">
-                    <textarea
-                      name="description"
-                      v-model="update.description"
-                      id="description"
-                      class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
-                  </div>
-                  <p class="mt-3 text-sm leading-6 text-gray-600">
-                    Write a few sentences about project.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button
-              type="submit"
-              class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Update Project
-            </button>
-          </div>
-        </form>
-
-        <form
-          class="relative isolate px-6 pt-14 lg:px-8"
-          @submit.prevent="deleteProject"
-        >
-          <div class="space-y-12">
-            <div class="border-b border-gray-900/10 pb-12">
-              <h2 class="text-base font-semibold leading-7 text-gray-900">
-                Delete Project
-              </h2>
-              <div
-                class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
-              >
-                <div class="sm:col-span-3">
-                  <label
-                    for="id"
-                    class="block text-sm font-medium leading-6 text-gray-900"
-                    >Project Name</label
-                  >
-                  <div class="mt-2">
-                    <select
-                      v-model="deleteProjectId"
-                      id="id"
-                      required
-                      class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                    >
-                      <option
-                        v-for="project in projects"
-                        :key="project._id"
-                        :value="project._id"
-                      >
-                        {{ project.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button
-              type="submit"
-              class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Delete Project
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div> -->
-
     <section
       id="proj"
       class="text-white w-full grid place-content-center pt-20"
@@ -859,44 +659,6 @@
         </p>
       </div>
     </section>
-    <!-- <section class="snap-y snap-mandatory">
-      <div class="flex flex-col md:flex-row h-[300vh]">
-        
-        <div
-          class="sticky top-0 md:w-1/2 flex items-center justify-center h-screen"
-        >
-          <transition name="fade" mode="out-in">
-            <img
-              v-if="currentPhoto"
-              :key="currentPhoto"
-              :src="currentPhoto"
-              alt="Teaser Image"
-              class="w-3/4 rounded-lg shadow-lg opacity-100 scale-100 transition-opacity duration-500 ease-in-out"
-            />
-          </transition>
-        </div>
-
-        
-        <div class="md:w-1/2">
-          <div
-            v-for="(section, index) in sections"
-            :key="index"
-            :data-photo="section.photo"
-            class="h-screen flex flex-col items-center justify-center p-4 snap-center"
-          >
-            <p class="text-xl font-semibold text-gray-900 mb-4">
-              {{ section.text }}
-            </p>
-            <p class="text-sm text-gray-500 mb-4">{{ section.paragraph }}</p>
-            <button
-              class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-300"
-            >
-              {{ section.buttonText }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </section> -->
 
     <section class="snap-y snap-mandatory">
       <div class="flex flex-col sm:flex-row sm:h-[200vh]">
@@ -1156,108 +918,7 @@
     </footer>
 
     <!--
-    <div v-if="pending">Loading Projects...</div>
-    <div>
-      <h2>Projects</h2>
-      <ul>
-        <li v-for="project in projects" :key="project.name">
-          <p>{{ project._id }}</p>
-          <h2>{{ project.name }}</h2>
-          <p>{{ project.description }}</p>
-        </li>
-      </ul>
-    </div>
-    
-  
-    <br />
-    <div>
-      <h1>Create New Project</h1>
-      <form @submit.prevent="createProject">
-        
-        <div>
-          <label for="name">Project Name : </label>
-          <input type="text" v-model="newProject.name" id="name" required />
-        </div>
-        <div>
-          <label for="description">Project Description : </label>
-          <textarea
-            name="description"
-            v-model="newProject.description"
-            id="description"
-          ></textarea>
-        </div>
-        <button type="submit">Create Project</button>
-      </form>
-    </div>
-  
-    <br />
-    <div>
-      <h2>Update Project</h2>
-      <form @submit.prevent="updateProject">
-        <div>
-          <label for="id">Project ID : </label>
-  
-          <select v-model="update.id" id="id" required>
-            <option
-              v-for="project in projects"
-              :key="project._id"
-              :value="project._id"
-            >
-              {{ project.name }}
-            </option>
-          </select>
-        </div>
-        <div>
-          <label for="name">Project Name : </label>
-          <input type="text" v-model="update.name" id="name" required />
-        </div>
-        <div>
-          <label for="description">Project Description : </label>
-          <textarea
-            name="description"
-            v-model="update.description"
-            id="description"
-          ></textarea>
-        </div>
-        <button type="submit">Update Project</button>
-      </form>
-    </div>
-  
-    <br />
-    <div>
-      <h1>Delete Project</h1>
-      <form @submit.prevent="deleteProject">
-        
-        <div>
-          <label for="id">Project ID : </label>
-  
-          <select v-model="deleteProjectId" id="id" required>
-            <option
-              v-for="project in projects"
-              :key="project._id"
-              :value="project._id"
-            >
-              {{ project.name }}
-            </option>
-          </select>
-        </div>
-        <button type="submit">Delete Project</button>
-      </form>
-    </div>
-    <br />
-  
-  
-    <div v-if="pending1">Loading Blogs...</div>
-    <div>
-      <h2>Blogs</h2>
-      <ul>
-        <li v-for="blog in blogs" :key="blog.name">
-          <h2>{{ blog.title }}</h2>
-          <p>{{ blog.content }}</p>
-        </li>
-      </ul>
-    </div>
-    -->
+    <div v-if="pending">Loading Projects...</div>-->
   </div>
 </template>
 
@@ -1427,6 +1088,76 @@ const deleteProject = async () => {
   } catch (error) {
     console.error(error);
   }
+};
+</script>
+
+<script>
+export default {
+  head() {
+    return {
+      title: "Garuka Satharasinghe - Portfolio",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content:
+            "Welcome to Garuka Satharasinghe's portfolio. Explore my projects, skills, and blog posts.",
+        },
+        {
+          hid: "keywords",
+          name: "keywords",
+          content:
+            "Garuka Satharasinghe, Garuka Methman Satharasinghe, portfolio, projects, blog, web development, software engineering, University of Moratuwa, Faculty of Information Technology",
+        },
+        { hid: "author", name: "author", content: "Garuka Satharasinghe" },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: "Garuka Satharasinghe - Portfolio",
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content:
+            "Welcome to Garuka Satharasinghe's portfolio. Explore my projects, skills, and blog posts.",
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content:
+            "https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1744243200&v=beta&t=DnfEOyHpmiuf3mPgTncf85gW7Wg9qfsvRpf4vtjXcKE",
+        },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: "https://your-portfolio-url.com",
+        },
+        { hid: "og:type", property: "og:type", content: "website" },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: "summary_large_image",
+        },
+        {
+          hid: "twitter:title",
+          name: "twitter:title",
+          content: "Garuka Satharasinghe - Portfolio",
+        },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content:
+            "Welcome to Garuka Satharasinghe's portfolio. Explore my projects, skills, and blog posts.",
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content:
+            "https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1744243200&v=beta&t=DnfEOyHpmiuf3mPgTncf85gW7Wg9qfsvRpf4vtjXcKE",
+        },
+      ],
+    };
+  },
 };
 </script>
 
