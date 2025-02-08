@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <Title>{{ name }} - Portfolio</Title>
+  </Head>
   <div class="scroll-smooth">
     <div
       class="fixed z-50 w-52 h-12 max-w-lg -translate-x-1/2 backdrop-blur-xl bg-black/1 border border-gray-300 rounded-2xl shadow-2xl bottom-4 left-1/2"
@@ -1088,76 +1091,6 @@ const deleteProject = async () => {
   } catch (error) {
     console.error(error);
   }
-};
-</script>
-
-<script>
-export default {
-  head() {
-    return {
-      title: "Garuka Satharasinghe - Portfolio",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content:
-            "Welcome to Garuka Satharasinghe's portfolio. Explore my projects, skills, and blog posts.",
-        },
-        {
-          hid: "keywords",
-          name: "keywords",
-          content:
-            "Garuka Satharasinghe, Garuka Methman Satharasinghe, portfolio, projects, blog, web development, software engineering, University of Moratuwa, Faculty of Information Technology",
-        },
-        { hid: "author", name: "author", content: "Garuka Satharasinghe" },
-        {
-          hid: "og:title",
-          property: "og:title",
-          content: "Garuka Satharasinghe - Portfolio",
-        },
-        {
-          hid: "og:description",
-          property: "og:description",
-          content:
-            "Welcome to Garuka Satharasinghe's portfolio. Explore my projects, skills, and blog posts.",
-        },
-        {
-          hid: "og:image",
-          property: "og:image",
-          content:
-            "https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1744243200&v=beta&t=DnfEOyHpmiuf3mPgTncf85gW7Wg9qfsvRpf4vtjXcKE",
-        },
-        {
-          hid: "og:url",
-          property: "og:url",
-          content: "https://your-portfolio-url.com",
-        },
-        { hid: "og:type", property: "og:type", content: "website" },
-        {
-          hid: "twitter:card",
-          name: "twitter:card",
-          content: "summary_large_image",
-        },
-        {
-          hid: "twitter:title",
-          name: "twitter:title",
-          content: "Garuka Satharasinghe - Portfolio",
-        },
-        {
-          hid: "twitter:description",
-          name: "twitter:description",
-          content:
-            "Welcome to Garuka Satharasinghe's portfolio. Explore my projects, skills, and blog posts.",
-        },
-        {
-          hid: "twitter:image",
-          name: "twitter:image",
-          content:
-            "https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1744243200&v=beta&t=DnfEOyHpmiuf3mPgTncf85gW7Wg9qfsvRpf4vtjXcKE",
-        },
-      ],
-    };
-  },
 };
 </script>
 
