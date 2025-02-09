@@ -180,12 +180,13 @@
   ></div> -->
     <section id="home">
       <div
-        class="bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"
-      >
+        class="absolute inset-0 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"
+      ></div>
+      <div class="">
         <div class="relative isolate px-6 lg:px-8">
           <div class="relative isolate px-0 pt-14 lg:px-8">
             <div
-              class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+              class="absolute inset-x-0 -top-40 transform-gpu overflow-hidden blur-3xl sm:-top-80"
               aria-hidden="true"
             >
               <div
@@ -213,14 +214,12 @@
               />
             </div>
 
-            <div
-              class="mx-auto max-w-2xl py-36 sm:py-32 lg:py-36 relative z-10"
-            >
+            <div class="mx-auto max-w-[620px] py-36 sm:py-32 lg:py-36 relative">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
                 <div class="col-span-2 sm:col-start-3 mb-0 flex justify-center">
                   <img
                     class="inline-block max-sm:max-h-36 max-sm:max-w-36 max-w-52 max-h-52 rounded-full ring-2 ring-white"
-                    src="https://media.licdn.com/dms/image/v2/D5603AQGg2rtlW8qnDw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688487717610?e=1744243200&v=beta&t=DnfEOyHpmiuf3mPgTncf85gW7Wg9qfsvRpf4vtjXcKE"
+                    src="/public/profile.jpg"
                     alt=""
                   />
                 </div>
@@ -284,7 +283,7 @@
                     Undergraduate at University of Moratuwa
                   </p>
                   <div
-                    class="mt-4 max-w-72 sm:max-w-full max-sm:place-self-center border bg-gray-200 border-gray-200 rounded-xl flex items-center gap-x-6"
+                    class="mt-4 max-w-72 sm:max-w-[400px] max-sm:place-self-center border bg-gray-200 border-gray-200 rounded-xl flex items-center gap-x-6"
                   >
                     <a
                       href="#"
@@ -349,7 +348,7 @@
             </div>
 
             <div
-              class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+              class="absolute inset-0 h-full w-full inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
               aria-hidden="true"
             >
               <div
