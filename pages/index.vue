@@ -9,9 +9,8 @@
       <div class="grid h-full max-w-lg grid-cols-4 mx-auto">
         <button
           @click="scrollToSection('home')"
-          data-tooltip-target="tooltip1"
           type="button"
-          class="inline-flex flex-col items-center justify-center px-5 rounded-s-2xl hover:bg-gray-300"
+          class="inline-flex flex-col items-center justify-center px-5 rounded-s-2xl hover:bg-gray-300 group"
         >
           <svg
             class="w-5 h-5"
@@ -40,21 +39,11 @@
             </g>
           </svg>
           <span class="sr-only">Home</span>
+          <span class="tooltip">Home</span>
         </button>
-        <div
-          class="absolute bottom-full invisible left-1/2 z-20 mb-3 -translate-x-1/2 whitespace-nowrap rounded-md bg-white py-2 px-4 text-xs text-gray-800 font-medium transition-opacity duration-300 border border-gray-300 shadow-[0px_12px_30px_-4px_rgba(16,24,40,0.08);]"
-          role="tooltip"
-          id="tooltip1"
-        >
-          <span
-            class="absolute -bottom-1.5 left-1/2 -z-10 h-3 w-3 border-b border-r border-gray-300 -translate-x-1/2 rotate-45 bg-white"
-          ></span>
-          This is a tooltip
-        </div>
 
         <button
           @click="scrollToSection('tech')"
-          data-tooltip-target="tooltip-home"
           type="button"
           class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-300 group"
         >
@@ -79,20 +68,12 @@
               </g>
             </g>
           </svg>
-          <span class="sr-only">Wallet</span>
+          <span class="sr-only">Technologies</span>
+          <span class="tooltip">Technologies</span>
         </button>
-        <div
-          id="tooltip-wallet"
-          role="tooltip"
-          class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-        >
-          Wallet
-          <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
 
         <button
           @click="scrollToSection('proj')"
-          data-tooltip-target="tooltip-settings"
           type="button"
           class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-300 group"
         >
@@ -118,16 +99,10 @@
               ></path>
             </g>
           </svg>
-          <span class="sr-only">Settings</span>
+          <span class="sr-only">Projects</span>
+          <span class="tooltip">Projects</span>
         </button>
-        <div
-          id="tooltip-settings"
-          role="tooltip"
-          class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-        >
-          Settings
-          <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
+
         <button
           @click="scrollToSection('blog')"
           data-tooltip-target="tooltip-profile"
@@ -162,22 +137,12 @@
               ></path>
             </g>
           </svg>
+          <span class="sr-only">Blog</span>
+          <span class="tooltip">Blog</span>
         </button>
-        <div
-          id="tooltip-profile"
-          role="tooltip"
-          class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip"
-        >
-          Profile
-          <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
       </div>
     </div>
 
-    <!-- <div
-    id="lal"
-    class="mx-auto bg-slate-50 border border-t-0 border-slate-300 h-10 w-64 rounded-b-lg"
-  ></div> -->
     <section id="home">
       <div
         class="absolute inset-0 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"
@@ -286,8 +251,9 @@
                     class="mt-4 max-w-72 sm:max-w-[400px] max-sm:place-self-center border bg-gray-200 border-gray-200 rounded-xl flex items-center gap-x-6"
                   >
                     <a
-                      href="#"
+                      href="https://drive.google.com/file/d/18cGBL3VDm4w59ZrnKtdUckJq3pG2sSTE/view"
                       class="px-3.5 py-2.5 text-sm font-semibold text-gray-500 hover:text-orange-600 transition-colors duration-300"
+                      target="_blank"
                       >Download Resume</a
                     >
 
@@ -918,9 +884,6 @@
         {{ name }}
       </h1>
     </footer>
-
-    <!--
-    <div v-if="pending">Loading Projects...</div>-->
   </div>
 </template>
 
@@ -972,125 +935,6 @@ const {
   pending1,
   error1,
 } = useFetch("https://portfoliobackend-production-0d8d.up.railway.app/blogs");
-
-const newProject = ref({ name: "", description: "" });
-
-const createProject = async () => {
-  console.log(newProject.value);
-  try {
-    //ensure that newProject.value is a valid object
-    const projectData = {
-      name: newProject.value.name.trim(),
-      description: newProject.value.description.trim(),
-    };
-
-    const response = await fetch("http://localhost:5000/projects", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(projectData),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to create project");
-    }
-
-    // Log the raw response text
-    const responseText = await response.text();
-    console.log("Raw Response:", responseText);
-
-    // Try parsing the JSON response
-    const data = JSON.parse(responseText);
-
-    // push data to frontend
-    projects.value.push(data);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const update = ref({ id: "", name: "", description: "" });
-
-const updateProject = async () => {
-  console.log(update.value);
-  try {
-    //ensure that update.value is a valid object
-    const projectData = {
-      name: update.value.name.trim(),
-      description: update.value.description.trim(),
-    };
-
-    const response = await fetch(
-      `http://localhost:5000/projects/${update.value.id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(projectData),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to update project");
-    }
-
-    // Log the raw response text
-    const responseText = await response.text();
-    console.log("Raw Response:", responseText);
-
-    // Try parsing the JSON response
-    const data = JSON.parse(responseText);
-
-    // find the project in the projects array and update it
-    const index = projects.value.findIndex(
-      (project) => project._id === data._id
-    );
-    projects.value[index] = data;
-
-    // clear the update object
-    update.value = { id: "", name: "", description: "" };
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const deleteProjectId = ref("");
-
-const deleteProject = async () => {
-  console.log(deleteProjectId.value);
-  try {
-    const response = await fetch(
-      `http://localhost:5000/projects/${deleteProjectId.value}`,
-      {
-        method: "DELETE",
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to delete project");
-    }
-
-    // Log the raw response text
-    const responseText = await response.text();
-    console.log("Raw Response:", responseText);
-
-    // Try parsing the JSON response
-    const data = JSON.parse(responseText);
-
-    // remove the project from the projects array
-    const index = projects.value.findIndex(
-      (project) => project._id === data._id
-    );
-    projects.value.splice(index, 1);
-
-    // clear the deleteId object
-    deleteProjectId.value = "";
-  } catch (error) {
-    console.error(error);
-  }
-};
 </script>
 
 <style>
@@ -1120,5 +964,33 @@ const deleteProject = async () => {
 
 html {
   scroll-behavior: smooth;
+}
+
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 500;
+  bottom: 125%; /* Position the tooltip above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #494c4e;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.group:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+button {
+  position: relative;
 }
 </style>
