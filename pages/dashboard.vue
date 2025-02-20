@@ -4,6 +4,7 @@
 
     <div class="projects-section mb-8">
       <h2 class="text-2xl font-semibold mb-4">Your Projects</h2>
+      <div v-if="pending"><p>Loading...</p></div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div
           v-for="project in projects"
@@ -162,7 +163,6 @@
                 type="text"
                 v-model="update.name"
                 id="update-name"
-                required
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
@@ -175,7 +175,6 @@
               <textarea
                 v-model="update.description"
                 id="update-description"
-                required
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               ></textarea>
             </div>
@@ -189,7 +188,6 @@
                 type="text"
                 v-model="update.link"
                 id="update-link"
-                required
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
@@ -225,114 +223,6 @@
         </form>
       </div>
     </div>
-
-    <form
-      class="relative isolate px-6 pt-14 lg:px-8 bg-white shadow-md rounded-lg mt-8"
-      @submit.prevent="updateProject"
-    >
-      <div class="space-y-12">
-        <div class="border-b border-gray-900/10 pb-12">
-          <h2 class="text-base font-semibold leading-7 text-gray-900">
-            Update Project
-          </h2>
-          <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div class="sm:col-span-3">
-              <label
-                for="id"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Project Name</label
-              >
-              <div class="mt-2">
-                <select
-                  v-model="update.id"
-                  id="id"
-                  required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                >
-                  <option
-                    v-for="project in projects"
-                    :key="project._id"
-                    :value="project._id"
-                  >
-                    {{ project.name }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="sm:col-span-3">
-              <label
-                for="name"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Updated Project Name</label
-              >
-              <div class="mt-2">
-                <input
-                  type="text"
-                  v-model="update.name"
-                  id="name"
-                  required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div class="col-span-full">
-              <label
-                for="description"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Updated Project Description</label
-              >
-              <div class="mt-2">
-                <textarea
-                  name="description"
-                  v-model="update.description"
-                  id="description"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div class="col-span-full">
-              <label
-                for="link"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Updated Project Link</label
-              >
-              <div class="mt-2">
-                <input
-                  type="text"
-                  v-model="update.link"
-                  id="link"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div class="col-span-full">
-              <label
-                for="img"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Updated Project Image</label
-              >
-              <div class="mt-2">
-                <input
-                  type="file"
-                  @change="handleFileUpload"
-                  id="img"
-                  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-6 flex items-center justify-end gap-x-6">
-        <button
-          type="submit"
-          class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Update Project
-        </button>
-      </div>
-    </form>
   </div>
 </template>
 
@@ -341,7 +231,7 @@ import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 // Create state variables
-const projects = ref([]);
+
 const newProject = ref({ name: "", description: "", link: "", img: null });
 const update = ref({ id: "", name: "", description: "", link: "", img: null });
 const deleteProjectId = ref("");
@@ -350,6 +240,14 @@ const isModalOpen = ref(false);
 const isUpdateModalOpen = ref(false);
 
 const router = useRouter();
+
+const {
+  data: projects,
+  pending,
+  error,
+} = useFetch(
+  "https://portfoliobackend-production-0d8d.up.railway.app/projects"
+);
 
 // Fetch projects (assumes API route available)
 const fetchProjects = async () => {
@@ -382,7 +280,7 @@ const createProject = async () => {
     body: formData,
   });
   const data = await response.json();
-  projects.value.push(data);
+  projects.value = [...projects.value, data]; // Ensure reactivity
 
   // Display success message and clear fields
   message.value = "Project created successfully!";
@@ -398,9 +296,15 @@ const createProject = async () => {
 // Update project function
 const updateProject = async () => {
   const formData = new FormData();
-  formData.append("name", update.value.name);
-  formData.append("description", update.value.description);
-  formData.append("link", update.value.link);
+  if (update.value.name) {
+    formData.append("name", update.value.name);
+  }
+  if (update.value.description) {
+    formData.append("description", update.value.description);
+  }
+  if (update.value.link) {
+    formData.append("link", update.value.link);
+  }
   if (update.value.img) {
     formData.append("img", update.value.img);
   }
@@ -440,7 +344,7 @@ const closeModal = () => {
 
 // Open update modal function
 const openUpdateModal = (project) => {
-  update.value = { ...project };
+  update.value = { ...project, id: project._id };
   isUpdateModalOpen.value = true;
 };
 

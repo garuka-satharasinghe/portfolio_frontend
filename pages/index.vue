@@ -3,6 +3,7 @@
     <Title>{{ name }} - Portfolio</Title>
   </Head>
   <div class="scroll-smooth">
+    <!--navbar-->
     <div
       class="fixed z-50 w-52 h-12 max-w-lg -translate-x-1/2 backdrop-blur-xl bg-black/1 border border-gray-300 rounded-2xl shadow-2xl bottom-4 left-1/2"
     >
@@ -356,26 +357,28 @@
       <div id="section2" class="bg-white py-16 sm:py-24">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto max-w-2xl text-center mb-20">
-            <p
-              class="mt-2 text-pretty text-4xl font-bold tracking-tight text-gray-700 sm:text-5xl lg:text-balance"
-            >
-              <span class="mx-1 relative inline-block stroke-current">
-                Technologies
-                <svg
-                  class="text-indigo-500 absolute -bottom-0.5 w-full max-h-1.5"
-                  viewBox="0 0 55 5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M0.652466 4.00002C15.8925 2.66668 48.0351 0.400018 54.6853 2.00002"
-                    stroke-width="2"
-                  ></path>
-                </svg>
-              </span>
+            <div class="scroll-animation">
+              <p
+                class="mt-2 text-pretty text-4xl font-bold tracking-tight text-gray-700 sm:text-5xl lg:text-balance"
+              >
+                <span class="mx-1 relative inline-block stroke-current">
+                  Technologies
+                  <svg
+                    class="text-indigo-500 absolute -bottom-0.5 w-full max-h-1.5"
+                    viewBox="0 0 55 5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M0.652466 4.00002C15.8925 2.66668 48.0351 0.400018 54.6853 2.00002"
+                      stroke-width="2"
+                    ></path>
+                  </svg>
+                </span>
 
-              I work with
-            </p>
+                I work with
+              </p>
+            </div>
           </div>
 
           <div
@@ -605,7 +608,7 @@
       id="proj"
       class="text-white w-full grid place-content-center pt-20"
     >
-      <div class="mx-auto max-w-2xl lg:text-center">
+      <div class="mx-auto max-w-2xl lg:text-center scroll-animation">
         <h1 class="text-base font-semibold leading-7 text-indigo-600"></h1>
         <p
           class="mt-2 text-4xl font-bold tracking-tight text-gray-700 sm:text-5xl"
@@ -686,7 +689,7 @@
       <div v-if="pending1">Loading Blogs...</div>
       <div class="bg-white pb-24 sm:pb-24">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <div class="justify-items-center lg:mx-0">
+          <div class="justify-items-center lg:mx-0 scroll-animation">
             <h2
               class="mt-2 text-4xl font-bold tracking-tight text-gray-700 sm:text-5xl"
             >
@@ -910,6 +913,19 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("scroll-animation-active");
+      } else {
+        entry.target.classList.remove("scroll-animation-active");
+      }
+    });
+  });
+
+  const elements = document.querySelectorAll(".scroll-animation");
+  elements.forEach((el) => observer.observe(el));
 });
 
 const scrollToSection = (sectionId) => {
@@ -938,6 +954,28 @@ const {
 </script>
 
 <style>
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.scroll-animation {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animation-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease-in-out;
