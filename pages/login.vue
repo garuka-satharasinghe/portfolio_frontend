@@ -76,7 +76,9 @@
 import { useRouter } from "nuxt/app";
 import Swal from "sweetalert2";
 import { ref } from "vue";
+import { useRuntimeConfig } from "#app";
 
+const config = useRuntimeConfig();
 const router = useRouter();
 const username = ref("");
 const password = ref("");
@@ -96,7 +98,10 @@ const handleLogin = async () => {
       return;
     }
 
-    if (username.value === "garuka" && password.value === "123654789") {
+    if (
+      username.value === config.public.username &&
+      password.value === config.public.password
+    ) {
       await Swal.fire({
         title: "Success!",
         text: "Welcome back!",
