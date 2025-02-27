@@ -263,6 +263,7 @@
                     >
                       <a
                         href="https://www.linkedin.com/in/garuka-satharasinghe-b559a923b"
+                        name="LinkedIn"
                         target="_blank"
                       >
                         <svg
@@ -279,6 +280,7 @@
 
                       <a
                         href="https://github.com/garuka-satharasinghe"
+                        name="GitHub"
                         target="_blank"
                       >
                         <svg
@@ -295,6 +297,7 @@
 
                       <a
                         href="https://web.facebook.com/garuka.satharasinghe.2002"
+                        name="Facebook"
                         target="_blank"
                       >
                         <svg
