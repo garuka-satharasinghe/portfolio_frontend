@@ -973,6 +973,12 @@ const {
   pending1,
   error1,
 } = useFetch("https://portfoliobackend-production-0d8d.up.railway.app/blogs");
+
+useHead({
+  htmlAttrs: {
+    lang: "en",
+  },
+});
 </script>
 
 <style>
