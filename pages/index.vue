@@ -393,6 +393,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"
                 alt="HTML5"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -405,6 +406,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"
                 alt="CSS3"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -417,6 +419,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
                 alt="JavaScript"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -429,6 +432,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
                 alt="React"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -441,6 +445,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nuxtjs/nuxtjs-original.svg"
                 alt="Nuxt"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -453,6 +458,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg"
                 alt="Bootstrap"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -465,6 +471,7 @@
                 src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
                 alt="Tailwind"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -477,6 +484,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg"
                 alt="PHP"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -489,6 +497,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg"
                 alt="MySQL"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -501,6 +510,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
                 alt="MongoDB"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -513,6 +523,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original.svg"
                 alt="Vue.js"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -525,6 +536,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
                 alt="TypeScript"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -537,6 +549,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
                 alt="Node.js"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -549,6 +562,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
                 alt="C"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -561,6 +575,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
                 alt="Python"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -573,6 +588,7 @@
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/photoshop/photoshop-plain.svg"
                 alt="Photoshop"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -585,6 +601,7 @@
                 src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg"
                 alt="Figma"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
 
@@ -597,6 +614,7 @@
                 src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg"
                 alt="Git"
                 class="h-16 w-16"
+                loading="lazy"
               />
             </div>
           </div>
