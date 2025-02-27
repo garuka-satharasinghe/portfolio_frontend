@@ -248,6 +248,11 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
+// Apply the auth middleware
+definePageMeta({
+  middleware: "auth",
+});
+
 // Create state variables
 
 const newProject = ref({ name: "", description: "", link: "", img: null });
