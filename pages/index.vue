@@ -644,6 +644,7 @@
               :src="currentPhoto"
               alt="Teaser Image"
               class="w-2/3 sm:w-3/4 rounded-lg opacity-100 scale-100 transition-opacity duration-500 ease-in-out"
+              loading="lazy"
             />
           </transition>
         </div>
