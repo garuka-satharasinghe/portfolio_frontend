@@ -108,6 +108,7 @@ const handleLogin = async () => {
           popup: "animated zoomIn",
         },
       });
+      localStorage.setItem("authToken", "your-auth-token"); // Set auth token
       router.push("/dashboard");
     } else {
       loginError.value = true;

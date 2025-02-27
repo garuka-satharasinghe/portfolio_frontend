@@ -632,7 +632,7 @@
     </section>
 
     <section class="snap-y snap-mandatory">
-      <div class="flex flex-col sm:flex-row sm:h-[200vh]">
+      <div class="flex flex-col sm:flex-row">
         <!-- Sticky Image -->
         <div
           class="sticky top-0 sm:w-1/2 max-sm:py-8 flex items-center justify-center sm:h-screen bg-white"
@@ -666,7 +666,7 @@
               :href="project.link"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center px-4 py-2 border border-gray-200 bg-black/5 text-gray-700 rounded-lg hover:bg-white transition-colors duration-300"
+              class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-300"
             >
               <svg
                 class="w-5 h-5 mr-2"

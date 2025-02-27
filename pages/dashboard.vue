@@ -1,22 +1,50 @@
 <template>
   <div class="dashboard-container bg-gray-100 p-8">
-    <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+    <h1 class="text-3xl text-gray-700 font-bold mb-6">Dashboard</h1>
+    <button @click="logout" class="text-red-600 hover:underline">Logout</button>
 
     <div class="projects-section mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Your Projects</h2>
+      <h2 class="text-2xl text-gray-700 font-semibold mb-4">Your Projects</h2>
       <div v-if="pending"><p>Loading...</p></div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          class="project-card bg-white rounded-lg relative flex items-center justify-center cursor-pointer hover:bg-gray-200"
+          @click="openModal"
+        >
+          <span class="text-gray-500 text-lg font-semibold"
+            >+ Add New Project</span
+          >
+        </div>
         <div
           v-for="project in projects"
           :key="project._id"
           class="project-card bg-white rounded-lg relative"
         >
-          <button
-            @click="deleteProject(project._id)"
-            class="absolute top-2 right-2 rounded-full bg-red-600 p-2 text-white shadow-sm hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600"
-          >
-            Delete
-          </button>
+          <div class="absolute top-2 right-2">
+            <button
+              @click="toggleDropdown(project._id)"
+              class="rounded-full bg-gray-200 p-2 text-gray-600 shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+            >
+              ⋮
+            </button>
+            <div
+              v-if="dropdownOpen === project._id"
+              class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-10"
+            >
+              <button
+                @click="openUpdateModal(project)"
+                class="block w-full text-left px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 rounded-t-md"
+              >
+                Update
+              </button>
+              <button
+                @click="deleteProject(project._id)"
+                class="block w-full text-left px-4 py-2 text-sm font-semibold text-red-700 hover:text-white hover:bg-red-700 rounded-b-md"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
           <img
             :src="
               'data:' + project.img.contentType + ';base64,' + project.img.data
@@ -25,32 +53,22 @@
             class="w-full h-60 object-cover rounded-t-lg"
           />
           <div class="p-4">
-            <h3 class="text-xl font-bold mb-2">{{ project.name }}</h3>
-            <p class="text-gray-700 mb-4">{{ project.description }}</p>
+            <h3 class="text-xl font-bold text-gray-700 mb-2">
+              {{ project.name }}
+            </h3>
+            <p class="text-gray-700 text-s mb-4 line-clamp-2">
+              {{ project.description }}
+            </p>
             <a
               :href="project.link"
               target="_blank"
               class="text-indigo-600 hover:underline"
               >View Project</a
             >
-            <button
-              @click="openUpdateModal(project)"
-              class="ml-4 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Update
-            </button>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Button to open the modal -->
-    <button
-      @click="openModal"
-      class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-    >
-      Create New Project
-    </button>
 
     <!-- Modal -->
     <div
@@ -238,6 +256,7 @@ const deleteProjectId = ref("");
 const message = ref("");
 const isModalOpen = ref(false);
 const isUpdateModalOpen = ref(false);
+const dropdownOpen = ref(null);
 
 const router = useRouter();
 
@@ -351,6 +370,17 @@ const openUpdateModal = (project) => {
 // Close update modal function
 const closeUpdateModal = () => {
   isUpdateModalOpen.value = false;
+};
+
+// Toggle dropdown function
+const toggleDropdown = (projectId) => {
+  dropdownOpen.value = dropdownOpen.value === projectId ? null : projectId;
+};
+
+// Logout function
+const logout = () => {
+  localStorage.removeItem("authToken");
+  router.push("/login");
 };
 
 onMounted(() => {
