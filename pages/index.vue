@@ -965,14 +965,12 @@ const {
   data: projects,
   pending,
   error,
-} = useFetch(
-  "https://portfoliobackend-production-0d8d.up.railway.app/projects"
-);
+} = useFetch("https://portfolio-backend-pi-plum.vercel.app/projects");
 const {
   data: blogs,
   pending1,
   error1,
-} = useFetch("https://portfoliobackend-production-0d8d.up.railway.app/blogs");
+} = useFetch("https://portfolio-backend-pi-plum.vercel.app/blogs");
 
 useHead({
   htmlAttrs: {
