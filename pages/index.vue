@@ -656,7 +656,7 @@
       <div class="flex flex-col sm:flex-row">
         <!-- Sticky Image -->
         <div
-          class="sticky top-0 sm:w-1/2 max-sm:py-8 flex items-center justify-center sm:h-screen bg-white"
+          class="sticky top-0 sm:w-1/2 max-sm:pt-12 max-sm:pb-4 max-sm:shadow-lg max-sm:shadow-white flex items-center justify-center sm:h-screen bg-white"
         >
           <transition name="fade" mode="out-in">
             <img
@@ -707,10 +707,14 @@
       </div>
     </section>
 
+    <hr
+      class="my-12 sm:mx-40 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-25 dark:opacity-100"
+    />
+
     <section id="blog">
       <div v-if="pending1">Loading Blogs...</div>
       <div class="bg-white pb-24 sm:pb-24">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8 sm:pt-16">
           <div class="justify-items-center lg:mx-0 scroll-animation">
             <h2
               class="mt-2 text-4xl font-bold tracking-tight text-gray-700 sm:text-5xl"
@@ -735,40 +739,46 @@
           <div
             class="justify-items-center mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 border-gray-200 lg:max-w-none md:grid-cols-2 lg:grid-cols-3"
           >
-            <div
-              class="relative mt-4 h-[300px] group ml-0 mr-auto dark:bg-black bg-white dark:border-0 border overflow-hidden rounded-md dark:text-white text-black"
+            <article
+              class="relative overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg"
               v-for="blog in blogs"
               :key="blog.name"
             >
-              <figure class="w-full h-full rounded-md overflow-hidden">
-                <img
-                  src="https://neilpatel.com/wp-content/uploads/2017/07/corporatepersonalblog.jpg"
-                  alt="shoes"
-                  width="600"
-                  height="600"
-                  class="h-full w-full scale-105 group-hover:scale-100 rounded-lg object-cover transition-all duration-300"
-                />
-              </figure>
+              <img
+                alt=""
+                src="https://neilpatel.com/wp-content/uploads/2017/07/corporatepersonalblog.jpg"
+                class="absolute inset-0 h-full w-full object-cover"
+              />
+
               <div
-                class="absolute top-0 left-0 w-full h-full transition-all duration-300 bg-gradient-to-b from-[#2c1f4225] via-[#142d805b] to-[#000000]"
-              ></div>
-              <article
-                class="p-4 space-y-2 absolute -bottom-10 group-hover:bottom-0 transition-all duration-300"
+                class="relative bg-gradient-to-b from-[#2c1f4225] via-[#1a1a1a9d] to-[#000000fb] pt-32 sm:pt-48 lg:pt-64"
               >
-                <h2 className="text-xl font-semibold">
-                  {{ blog.title }}
-                </h2>
-                <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-00">
-                  {{ blog.content }}
-                </p>
-                <a
-                  href="#"
-                  class="text-base dark:text-white text-blue-600 font-normal group-hover:opacity-100 opacity-0 translate-y-2 group-hover:translate-y-0 pt-2 flex gap-1 transition-all duration-300"
-                >
-                  Read Story
-                </a>
-              </article>
-            </div>
+                <div class="p-4 sm:p-6">
+                  <a href="#">
+                    <h3 class="mt-0.5 text-lg text-white font-bold">
+                      {{ blog.title }}
+                    </h3>
+                  </a>
+
+                  <p class="mt-1 line-clamp-3 text-sm/relaxed text-white/95">
+                    {{ blog.content }}
+                  </p>
+                  <a
+                    href="#"
+                    class="group mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gray-300"
+                  >
+                    Read More
+
+                    <span
+                      aria-hidden="true"
+                      class="block transition-all group-hover:ms-0.5 rtl:rotate-180"
+                    >
+                      &rarr;
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
