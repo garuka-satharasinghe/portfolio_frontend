@@ -146,9 +146,9 @@
 
     <section id="home">
       <div
-        class="absolute inset-0 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"
+        class="absolute inset-0 h-screen w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"
       ></div>
-      <div class="">
+      <div class="h-screen">
         <div class="relative isolate px-6 lg:px-8">
           <div class="relative isolate px-0 pt-14 lg:px-8">
             <div
@@ -180,7 +180,7 @@
               />
             </div>
 
-            <div class="mx-auto max-w-[620px] py-36 sm:py-32 lg:py-36 relative">
+            <div class="mx-auto max-w-[620px] py-36 sm:py-32 lg:py-36 content-center">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
                 <div class="col-span-2 sm:col-start-3 mb-0 flex justify-center">
                   <img
@@ -350,9 +350,7 @@
       </div>
     </section>
 
-    <hr
-      class="my-12 sm:mx-40 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-25 dark:opacity-100"
-    />
+    
 
     <div v-if="pending">Loading Projects...</div>
 
@@ -706,10 +704,6 @@
         </div>
       </div>
     </section>
-
-    <hr
-      class="my-12 sm:mx-40 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-25 dark:opacity-100"
-    />
 
     <section id="blog">
       <div v-if="pending1">Loading Blogs...</div>
