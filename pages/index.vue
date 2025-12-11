@@ -252,7 +252,7 @@
                     class="mt-4 max-w-72 sm:max-w-[400px] max-sm:place-self-center border bg-gray-200 border-gray-200 rounded-xl flex items-center gap-x-6"
                   >
                     <a
-                      href="https://drive.google.com/file/d/18cGBL3VDm4w59ZrnKtdUckJq3pG2sSTE/view"
+                      href="https://drive.google.com/file/d/1GPJavNT-bdkx2nNyk3yMCbpI3GdIQFdo/view"
                       class="px-3.5 py-2.5 text-sm font-semibold text-gray-500 hover:text-orange-600 transition-colors duration-300"
                       target="_blank"
                       >Download Resume</a
