@@ -385,45 +385,6 @@
           <div
             class="grid grid-cols-3 md:grid-cols-6 gap-x-6 gap-y-12 place-items-center md:px-16"
           >
-            <!-- HTML -->
-            <div
-              class="icon-float hover:scale-110 transition-transform"
-              style="animation-delay: 0s"
-            >
-              <img
-                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"
-                alt="HTML5"
-                class="h-16 w-16"
-                loading="lazy"
-              />
-            </div>
-
-            <!-- CSS -->
-            <div
-              class="icon-float hover:scale-110 transition-transform"
-              style="animation-delay: 0.2s"
-            >
-              <img
-                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"
-                alt="CSS3"
-                class="h-16 w-16"
-                loading="lazy"
-              />
-            </div>
-
-            <!-- JavaScript -->
-            <div
-              class="icon-float hover:scale-110 transition-transform"
-              style="animation-delay: 0.4s"
-            >
-              <img
-                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-                alt="JavaScript"
-                class="h-16 w-16"
-                loading="lazy"
-              />
-            </div>
-
             <!-- React -->
             <div
               class="icon-float hover:scale-110 transition-transform"
@@ -432,6 +393,19 @@
               <img
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
                 alt="React"
+                class="h-16 w-16"
+                loading="lazy"
+              />
+            </div>
+            
+            <!-- NextJS -->
+            <div
+              class="icon-float hover:scale-110 transition-transform"
+              style="animation-delay: 0s"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
+                alt="NextJs"
                 class="h-16 w-16"
                 loading="lazy"
               />
@@ -476,14 +450,14 @@
               />
             </div>
 
-            <!-- PHP -->
+            <!-- PostgreSQL -->
             <div
               class="icon-float hover:scale-110 transition-transform"
               style="animation-delay: 1.4s"
             >
               <img
-                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg"
-                alt="PHP"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
+                alt="PostgreSQL"
                 class="h-16 w-16"
                 loading="lazy"
               />
@@ -536,6 +510,71 @@
               <img
                 src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
                 alt="TypeScript"
+                class="h-16 w-16"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- HTML -->
+            <div
+              class="icon-float hover:scale-110 transition-transform"
+              style="animation-delay: 0s"
+            >
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"
+                alt="HTML5"
+                class="h-16 w-16"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- CSS -->
+            <div
+              class="icon-float hover:scale-110 transition-transform"
+              style="animation-delay: 0.2s"
+            >
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"
+                alt="CSS3"
+                class="h-16 w-16"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- JavaScript -->
+            <div
+              class="icon-float hover:scale-110 transition-transform"
+              style="animation-delay: 0.4s"
+            >
+              <img
+                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+                alt="JavaScript"
+                class="h-16 w-16"
+                loading="lazy"
+              />
+            </div>
+
+             <!-- SpringBoot -->
+            <div
+              class="icon-float hover:scale-110 transition-transform"
+              style="animation-delay: 2.4s"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg"
+                alt="SpringBoot"
+                class="h-16 w-16"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Express.js -->
+            <div
+              class="icon-float hover:scale-110 transition-transform"
+              style="animation-delay: 2.4s"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"
+                alt="Express.js"
                 class="h-16 w-16"
                 loading="lazy"
               />
