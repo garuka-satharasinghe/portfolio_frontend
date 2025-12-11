@@ -417,7 +417,7 @@
               style="animation-delay: 0.8s"
             >
               <img
-                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nuxtjs/nuxtjs-original.svg"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxt/nuxt-original.svg"
                 alt="Nuxt"
                 class="h-16 w-16"
                 loading="lazy"
@@ -632,6 +632,19 @@
               />
             </div>
 
+            <!-- Blender -->
+            <div
+              class="icon-float hover:scale-110 transition-transform"
+              style="animation-delay: 3s"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/blender/blender-original.svg"
+                alt="Blender"
+                class="h-16 w-16"
+                loading="lazy"
+              />
+            </div>
+
             <!-- Figma -->
             <div
               class="icon-float hover:scale-110 transition-transform"
@@ -657,6 +670,20 @@
                 loading="lazy"
               />
             </div>
+
+            <!-- Arduino -->
+            <div
+              class="icon-float hover:scale-110 transition-transform"
+              style="animation-delay: 3.4s"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg"
+                alt="Arduino"
+                class="h-16 w-16"
+                loading="lazy"
+              />
+            </div>
+            
           </div>
         </div>
       </div>
