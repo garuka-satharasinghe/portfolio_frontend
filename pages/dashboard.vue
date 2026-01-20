@@ -1,8 +1,8 @@
 <template>
-  <div class="dashboard-container bg-gray-100 p-8">
+  <div v-if="user" class="dashboard-container bg-gray-100 p-8">
     <h1 class="text-3xl text-gray-700 font-bold mb-6">Dashboard</h1>
-    <button @click="logout" class="text-red-600 hover:underline">Logout</button>
-
+    <div class="mb-4">Welcome, {{ user.username }}! <button @click="logout" class="text-red-600 hover:underline ml-2">Logout</button></div>
+    <!-- ...existing dashboard/project code... -->
     <div class="projects-section mb-8">
       <h2 class="text-2xl text-gray-700 font-semibold mb-4">Your Projects</h2>
       <div v-if="pending"><p>Loading...</p></div>
@@ -69,174 +69,69 @@
         </div>
       </div>
     </div>
-
-    <!-- Modal -->
-    <div
-      v-if="isModalOpen"
-      class="fixed inset-0 flex items-center justify-center z-50"
-    >
+    <!-- ...existing modals and update modal code... -->
+    <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center z-50">
       <div class="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
       <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg z-50">
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-xl font-semibold">Create New Project</h2>
-          <button @click="closeModal" class="text-gray-600 hover:text-gray-900">
-            &times;
-          </button>
+          <button @click="closeModal" class="text-gray-600 hover:text-gray-900">&times;</button>
         </div>
         <form @submit.prevent="createProject">
           <div class="space-y-4">
             <div>
-              <label for="name" class="block text-sm font-medium text-gray-700"
-                >Project Name</label
-              >
-              <input
-                type="text"
-                v-model="newProject.name"
-                id="name"
-                required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              />
+              <label for="name" class="block text-sm font-medium text-gray-700">Project Name</label>
+              <input type="text" v-model="newProject.name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
             </div>
             <div>
-              <label
-                for="description"
-                class="block text-sm font-medium text-gray-700"
-                >Project Description</label
-              >
-              <textarea
-                v-model="newProject.description"
-                id="description"
-                required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              ></textarea>
+              <label for="description" class="block text-sm font-medium text-gray-700">Project Description</label>
+              <textarea v-model="newProject.description" id="description" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
             </div>
             <div>
-              <label for="link" class="block text-sm font-medium text-gray-700"
-                >Project Link</label
-              >
-              <input
-                type="text"
-                v-model="newProject.link"
-                id="link"
-                required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              />
+              <label for="link" class="block text-sm font-medium text-gray-700">Project Link</label>
+              <input type="text" v-model="newProject.link" id="link" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
             </div>
             <div>
-              <label for="img" class="block text-sm font-medium text-gray-700"
-                >Project Image</label
-              >
-              <input
-                type="file"
-                @change="handleFileUpload"
-                id="img"
-                class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-              />
+              <label for="img" class="block text-sm font-medium text-gray-700">Project Image</label>
+              <input type="file" @change="handleFileUpload" id="img" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" />
             </div>
           </div>
           <div class="mt-6 flex justify-end">
-            <button
-              type="button"
-              @click="closeModal"
-              class="mr-3 rounded-md bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Create Project
-            </button>
+            <button type="button" @click="closeModal" class="mr-3 rounded-md bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Cancel</button>
+            <button type="submit" class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">Create Project</button>
           </div>
         </form>
       </div>
     </div>
-
-    <!-- Update Modal -->
-    <div
-      v-if="isUpdateModalOpen"
-      class="fixed inset-0 flex items-center justify-center z-50"
-    >
+    <div v-if="isUpdateModalOpen" class="fixed inset-0 flex items-center justify-center z-50">
       <div class="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
       <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg z-50">
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-xl font-semibold">Update Project</h2>
-          <button
-            @click="closeUpdateModal"
-            class="text-gray-600 hover:text-gray-900"
-          >
-            &times;
-          </button>
+          <button @click="closeUpdateModal" class="text-gray-600 hover:text-gray-900">&times;</button>
         </div>
         <form @submit.prevent="updateProject">
           <div class="space-y-4">
             <div>
-              <label
-                for="update-name"
-                class="block text-sm font-medium text-gray-700"
-                >Project Name</label
-              >
-              <input
-                type="text"
-                v-model="update.name"
-                id="update-name"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              />
+              <label for="update-name" class="block text-sm font-medium text-gray-700">Project Name</label>
+              <input type="text" v-model="update.name" id="update-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
             </div>
             <div>
-              <label
-                for="update-description"
-                class="block text-sm font-medium text-gray-700"
-                >Project Description</label
-              >
-              <textarea
-                v-model="update.description"
-                id="update-description"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              ></textarea>
+              <label for="update-description" class="block text-sm font-medium text-gray-700">Project Description</label>
+              <textarea v-model="update.description" id="update-description" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
             </div>
             <div>
-              <label
-                for="update-link"
-                class="block text-sm font-medium text-gray-700"
-                >Project Link</label
-              >
-              <input
-                type="text"
-                v-model="update.link"
-                id="update-link"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              />
+              <label for="update-link" class="block text-sm font-medium text-gray-700">Project Link</label>
+              <input type="text" v-model="update.link" id="update-link" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
             </div>
             <div>
-              <label
-                for="update-img"
-                class="block text-sm font-medium text-gray-700"
-                >Project Image</label
-              >
-              <input
-                type="file"
-                @change="handleFileUpload"
-                id="update-img"
-                class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-              />
+              <label for="update-img" class="block text-sm font-medium text-gray-700">Project Image</label>
+              <input type="file" @change="handleFileUpload" id="update-img" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" />
             </div>
           </div>
           <div class="mt-6 flex justify-end">
-            <button
-              type="button"
-              @click="closeUpdateModal"
-              class="mr-3 rounded-md bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Update Project
-            </button>
+            <button type="button" @click="closeUpdateModal" class="mr-3 rounded-md bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Cancel</button>
+            <button type="submit" class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">Update Project</button>
           </div>
         </form>
       </div>
@@ -246,15 +141,13 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
 
-// Apply the auth middleware
-definePageMeta({
-  middleware: "auth",
-});
+// Auth state
+import { useRouter } from "nuxt/app";
+const user = ref(null);
+const router = useRouter();
 
-// Create state variables
-
+// Dashboard/project state (existing)
 const newProject = ref({ name: "", description: "", link: "", img: null });
 const update = ref({ id: "", name: "", description: "", link: "", img: null });
 const deleteProjectId = ref("");
@@ -263,12 +156,10 @@ const isModalOpen = ref(false);
 const isUpdateModalOpen = ref(false);
 const dropdownOpen = ref(null);
 
-const router = useRouter();
-
 const {
   data: projects,
   pending,
-  error,
+  error: fetchError,
 } = useFetch(
   "https://portfoliobackend-production-0d8d.up.railway.app/projects"
 );
@@ -382,14 +273,37 @@ const toggleDropdown = (projectId) => {
   dropdownOpen.value = dropdownOpen.value === projectId ? null : projectId;
 };
 
-// Logout function
-const logout = () => {
-  localStorage.removeItem("authToken");
-  router.push("/login");
-};
 
-onMounted(() => {
-  fetchProjects();
+// Logout function
+async function logout() {
+  try {
+    await fetch("http://localhost:5000/auth/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+    user.value = null;
+    projects.value = [];
+    router.push("/login");
+  } catch (err) {
+    router.push("/login");
+  }
+}
+
+// Check if already logged in on mount
+onMounted(async () => {
+  try {
+    const res = await fetch("http://localhost:5000/auth/me", {
+      credentials: "include"
+    });
+    if (res.ok) {
+      user.value = await res.json();
+      fetchProjects();
+    } else {
+      router.push("/login");
+    }
+  } catch (err) {
+    router.push("/login");
+  }
 });
 </script>
 

@@ -76,9 +76,7 @@
 import { useRouter } from "nuxt/app";
 import Swal from "sweetalert2";
 import { ref } from "vue";
-import { useRuntimeConfig } from "#app";
 
-const config = useRuntimeConfig();
 const router = useRouter();
 const username = ref("");
 const password = ref("");
@@ -98,32 +96,21 @@ const handleLogin = async () => {
       return;
     }
 
-    if (
-      username.value === config.public.username &&
-      password.value === config.public.password
-    ) {
-      await Swal.fire({
-        title: "Success!",
-        text: "Welcome back!",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-        background: "#fff",
-        customClass: {
-          popup: "animated zoomIn",
-        },
-      });
-      localStorage.setItem("authToken", "your-auth-token"); // Set auth token
-      router.push("/dashboard");
-    } else {
+    const res = await fetch("http://localhost:5000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ username: username.value, password: password.value })
+    });
+    const data = await res.json();
+    if (!res.ok) {
       loginError.value = true;
       setTimeout(() => {
         loginError.value = false;
       }, 500);
-
       await Swal.fire({
         title: "Error!",
-        text: "Invalid credentials",
+        text: data.message || "Invalid credentials",
         icon: "error",
         confirmButtonText: "Try Again",
         background: "#fff",
@@ -131,9 +118,32 @@ const handleLogin = async () => {
           popup: "animated shake",
         },
       });
+      return;
     }
+
+    await Swal.fire({
+      title: "Success!",
+      text: "Welcome back!",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1500,
+      background: "#fff",
+      customClass: {
+        popup: "animated zoomIn",
+      },
+    });
+    router.push("/dashboard");
   } catch (error) {
     console.error("Login error:", error);
+    await Swal.fire({
+      title: "Error!",
+      text: "Login failed. Please try again.",
+      icon: "error",
+      background: "#fff",
+      customClass: {
+        popup: "animated shake",
+      },
+    });
   }
 };
 </script>
