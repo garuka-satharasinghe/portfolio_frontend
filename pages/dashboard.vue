@@ -161,12 +161,12 @@ const {
   pending,
   error: fetchError,
 } = useFetch(
-  "https://portfoliobackend-production-0d8d.up.railway.app/projects"
+  "https://portfolio-backend-pi-plum.vercel.app/projects"
 );
 
 // Fetch projects (assumes API route available)
 const fetchProjects = async () => {
-  const response = await fetch("http://localhost:5000/projects");
+  const response = await fetch("https://portfolio-backend-pi-plum.vercel.app/projects");
   const data = await response.json();
   projects.value = data;
 };
@@ -190,7 +190,7 @@ const createProject = async () => {
     formData.append("img", newProject.value.img);
   }
 
-  const response = await fetch("http://localhost:5000/projects", {
+  const response = await fetch("https://portfolio-backend-pi-plum.vercel.app/projects", {
     method: "POST",
     body: formData,
   });
@@ -225,7 +225,7 @@ const updateProject = async () => {
   }
 
   const response = await fetch(
-    `http://localhost:5000/projects/${update.value.id}`,
+    `https://portfolio-backend-pi-plum.vercel.app/projects/${update.value.id}`,
     {
       method: "PATCH",
       body: formData,
@@ -241,7 +241,7 @@ const updateProject = async () => {
 
 // Delete project function
 const deleteProject = async (projectId) => {
-  await fetch(`http://localhost:5000/projects/${projectId}`, {
+  await fetch(`https://portfolio-backend-pi-plum.vercel.app/projects/${projectId}`, {
     method: "DELETE",
   });
   projects.value = projects.value.filter((p) => p._id !== projectId);
@@ -277,7 +277,7 @@ const toggleDropdown = (projectId) => {
 // Logout function
 async function logout() {
   try {
-    await fetch("http://localhost:5000/auth/logout", {
+    await fetch("https://portfolio-backend-pi-plum.vercel.app/auth/logout", {
       method: "POST",
       credentials: "include"
     });
@@ -292,7 +292,7 @@ async function logout() {
 // Check if already logged in on mount
 onMounted(async () => {
   try {
-    const res = await fetch("http://localhost:5000/auth/me", {
+    const res = await fetch("https://portfolio-backend-pi-plum.vercel.app/auth/me", {
       credentials: "include"
     });
     if (res.ok) {
