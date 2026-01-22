@@ -802,19 +802,24 @@
             <article
               class="relative overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg"
               v-for="blog in blogs"
-              :key="blog.name"
+              :key="blog._id"
             >
               <img
-                alt=""
-                src="https://neilpatel.com/wp-content/uploads/2017/07/corporatepersonalblog.jpg"
+                v-if="blog.img && blog.img.data"
+                alt="Blog Image"
+                :src="'data:' + blog.img.contentType + ';base64,' + blog.img.data"
                 class="absolute inset-0 h-full w-full object-cover"
               />
+              <div
+                v-else
+                class="absolute inset-0 h-full w-full bg-gradient-to-br from-indigo-500 to-purple-600"
+              ></div>
 
               <div
                 class="relative bg-gradient-to-b from-[#2c1f4225] via-[#1a1a1a9d] to-[#000000fb] pt-32 sm:pt-48 lg:pt-64"
               >
                 <div class="p-4 sm:p-6">
-                  <a href="#">
+                  <a :href="blog.link" target="_blank">
                     <h3 class="mt-0.5 text-lg text-white font-bold">
                       {{ blog.title }}
                     </h3>
@@ -824,7 +829,8 @@
                     {{ blog.content }}
                   </p>
                   <a
-                    href="#"
+                    :href="blog.link"
+                    target="_blank"
                     class="group mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gray-300"
                   >
                     Read More
