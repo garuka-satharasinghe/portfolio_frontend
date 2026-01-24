@@ -1050,10 +1050,15 @@ const handleScroll = () => {
   const sectionElements = document.querySelectorAll("[data-photo]");
   sectionElements.forEach((section) => {
     const rect = section.getBoundingClientRect();
-    if (
-      rect.top <= window.innerHeight / 2 &&
-      rect.bottom >= window.innerHeight / 2
-    ) {
+    
+    // For mobile (text in bottom half), check if section is in the bottom half of viewport
+    // For desktop, check if section is centered in viewport
+    const isMobile = window.innerWidth < 640;
+    const isVisible = isMobile 
+      ? rect.top >= window.innerHeight * 0.3 && rect.top <= window.innerHeight * 0.7
+      : rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
+    
+    if (isVisible) {
       const photo = section.getAttribute("data-photo");
       if (currentPhoto.value !== photo) {
         currentPhoto.value = photo;
