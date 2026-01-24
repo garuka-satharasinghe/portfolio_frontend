@@ -4,7 +4,7 @@
       <div class="text-center px-4 max-w-5xl mx-auto">
         <!-- Name -->
         <div class="mb-8">
-          <div class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-clip-text text-gray-700 leading-tight">
+          <div class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-clip-text text-gray-700 leading-tight max-sm:leading-9">
             <div>Garuka</div>
             <div>Satharasinghe</div>
           </div>
