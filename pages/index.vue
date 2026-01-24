@@ -720,8 +720,8 @@
       <div class="flex flex-col sm:flex-row">
         <!-- Mobile: Sticky image top, scrolling text bottom -->
         <div class="sm:hidden w-full">
-          <!-- Sticky Mobile Image Section - Top Half -->
-          <div class="sticky top-0 h-[50vh] flex items-center justify-center bg-white z-10">
+          <!-- Sticky Mobile Image Section - 40% -->
+          <div class="sticky top-0 h-[40vh] flex items-center justify-center bg-white z-10">
             <transition name="fade" mode="out-in">
               <img
                 v-if="currentPhoto"
@@ -734,13 +734,13 @@
             </transition>
           </div>
           
-          <!-- Scrolling Mobile Text Sections -->
+          <!-- Scrolling Mobile Text Sections - 60% -->
           <div>
             <div
               v-for="project in projects"
               :key="'mobile-' + project.name"
               :data-photo="'data:' + project.img.contentType + ';base64,' + project.img.data"
-              class="h-[50vh] flex flex-col items-center justify-center p-8 bg-white project-section"
+              class="h-[60vh] flex flex-col items-center justify-start pt-8 p-8 pb-20 bg-white project-section"
             >
               <p class="text-xl font-semibold text-gray-700 mb-4 text-center">
                 {{ project.name }}
@@ -1051,11 +1051,11 @@ const handleScroll = () => {
   sectionElements.forEach((section) => {
     const rect = section.getBoundingClientRect();
     
-    // For mobile (text in bottom half), check if section is in the bottom half of viewport
+    // For mobile (text in bottom 60%), check if section is visible in that area
     // For desktop, check if section is centered in viewport
     const isMobile = window.innerWidth < 640;
     const isVisible = isMobile 
-      ? rect.top >= window.innerHeight * 0.3 && rect.top <= window.innerHeight * 0.7
+      ? rect.top >= window.innerHeight * 0.3 && rect.top <= window.innerHeight * 0.5
       : rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
     
     if (isVisible) {
