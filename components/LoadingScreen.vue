@@ -14,11 +14,14 @@
         <div class="w-full max-w-md mx-auto">
           <div class="h-1.5 bg-gradient-to-r from-transparent via-gray-200 via-50% via-gray-200 to-transparent rounded-full overflow-hidden relative">
             <div 
-              class="h-full rounded-full transition-all duration-300 ease-out relative"
-              :style="{ width: progress + '%' }"
-            >
-              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-blue-600 via-50% via-purple-600 to-transparent"></div>
-            </div>
+              class="h-full rounded-full transition-all duration-300 ease-out absolute left-0"
+              :style="{ 
+                width: progress + '%',
+                background: 'linear-gradient(to right, #2563eb, #9333ea)',
+                maskImage: 'linear-gradient(to right, transparent, #2563eb 10%, #9333ea 90%, transparent)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent, #2563eb 10%, #9333ea 90%, transparent)'
+              }"
+            ></div>
           </div>
         </div>
       </div>
