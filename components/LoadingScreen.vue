@@ -33,40 +33,35 @@ const isLoading = ref(true)
 const progress = ref(0)
 
 onMounted(() => {
-  let resourcesLoaded = 0
-  let totalResources = 0
+  let startTime = Date.now()
   
-  // Track resource loading
-  const updateProgress = () => {
-    const resources = performance.getEntriesByType('resource')
-    totalResources = resources.length
-    resourcesLoaded = resources.filter(r => r.responseEnd > 0).length
+  // Gradual progress based on time
+  const progressInterval = setInterval(() => {
+    const elapsed = Date.now() - startTime
+    const timeBasedProgress = Math.min(85, (elapsed / 60000) * 85) // 85% over 60 seconds
     
-    if (totalResources > 0) {
-      progress.value = Math.min(95, (resourcesLoaded / totalResources) * 100)
+    // Smooth increment
+    if (progress.value < timeBasedProgress) {
+      progress.value = Math.min(timeBasedProgress, progress.value + 1)
     }
-  }
-  
-  // Update progress periodically
-  const progressInterval = setInterval(updateProgress, 100)
-  
-  // Listen for resource loads
-  const observer = new PerformanceObserver(() => {
-    updateProgress()
-  })
-  observer.observe({ entryTypes: ['resource', 'navigation'] })
+  }, 100)
 
   // Wait for page to fully load
   const handleLoad = () => {
     clearInterval(progressInterval)
-    observer.disconnect()
     
-    progress.value = 100
-    
-    // Hide loading screen after a short delay
-    setTimeout(() => {
-      isLoading.value = false
-    }, 500)
+    // Smoothly complete to 100%
+    const completeInterval = setInterval(() => {
+      if (progress.value < 100) {
+        progress.value = Math.min(100, progress.value + 2)
+      } else {
+        clearInterval(completeInterval)
+        // Hide loading screen after reaching 100%
+        setTimeout(() => {
+          isLoading.value = false
+        }, 500)
+      }
+    }, 30)
   }
 
   if (document.readyState === 'complete') {
