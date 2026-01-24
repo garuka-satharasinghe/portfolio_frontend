@@ -1170,8 +1170,16 @@ html {
 }
 
 .project-section {
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   scroll-snap-stop: always;
+}
+
+/* Mobile: snap text sections to start at 40vh (where image ends) */
+@media (max-width: 639px) {
+  .project-section {
+    scroll-snap-align: start;
+    scroll-margin-top: 40vh;
+  }
 }
 
 .tooltip {
