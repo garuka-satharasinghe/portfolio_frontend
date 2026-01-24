@@ -716,8 +716,8 @@
       </div>
     </section>
 
-    <section class="snap-y snap-mandatory">
-      <div class="flex flex-col sm:flex-row">
+    <section class="projects-snap-container">
+      <div class="flex flex-col sm:flex-row snap-center">
         <!-- Sticky Image -->
         <div
           class="sticky top-0 sm:w-1/2 max-sm:pt-12 max-sm:pb-4 max-sm:shadow-lg max-sm:shadow-white flex items-center justify-center sm:h-screen bg-white"
@@ -735,14 +735,14 @@
         </div>
 
         <!-- Text Sections -->
-        <div class="sm:w-1/2">
+        <div class="sm:w-1/2 ">
           <div
             v-for="project in projects"
             :key="project.name"
             :data-photo="
               'data:' + project.img.contentType + ';base64,' + project.img.data
             "
-            class="sm:h-screen flex flex-col items-center sm:items-start justify-center p-10 sm:p-20 sm:pl-5 snap-center"
+            class="sm:h-screen flex flex-col items-center sm:items-start justify-center p-10 sm:p-20 sm:pl-5 project-section"
           >
             <p class="text-xl font-semibold text-gray-700 mb-4">
               {{ project.name }}
@@ -1104,6 +1104,16 @@ useHead({
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+.projects-snap-container {
+  scroll-snap-type: y mandatory;
+}
+
+.project-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .tooltip {
