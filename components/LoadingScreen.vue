@@ -33,32 +33,48 @@ const isLoading = ref(true)
 const progress = ref(0)
 
 onMounted(() => {
-  // Simulate loading progress
-  const interval = setInterval(() => {
-    if (progress.value < 90) {
-      progress.value += Math.random() * 15
+  let resourcesLoaded = 0
+  let totalResources = 0
+  
+  // Track resource loading
+  const updateProgress = () => {
+    const resources = performance.getEntriesByType('resource')
+    totalResources = resources.length
+    resourcesLoaded = resources.filter(r => r.responseEnd > 0).length
+    
+    if (totalResources > 0) {
+      progress.value = Math.min(95, (resourcesLoaded / totalResources) * 100)
     }
-  }, 200)
+  }
+  
+  // Update progress periodically
+  const progressInterval = setInterval(updateProgress, 100)
+  
+  // Listen for resource loads
+  const observer = new PerformanceObserver(() => {
+    updateProgress()
+  })
+  observer.observe({ entryTypes: ['resource', 'navigation'] })
 
   // Wait for page to fully load
+  const handleLoad = () => {
+    clearInterval(progressInterval)
+    observer.disconnect()
+    
+    progress.value = 100
+    
+    // Hide loading screen after a short delay
+    setTimeout(() => {
+      isLoading.value = false
+    }, 500)
+  }
+
   if (document.readyState === 'complete') {
-    completeLoading(interval)
+    handleLoad()
   } else {
-    window.addEventListener('load', () => {
-      completeLoading(interval)
-    })
+    window.addEventListener('load', handleLoad)
   }
 })
-
-const completeLoading = (interval) => {
-  clearInterval(interval)
-  progress.value = 100
-  
-  // Hide loading screen after a short delay
-  setTimeout(() => {
-    isLoading.value = false
-  }, 500)
-}
 </script>
 
 <style scoped>
