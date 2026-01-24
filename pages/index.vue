@@ -719,8 +719,12 @@
     <section class="projects-snap-container">
       <div class="flex flex-col sm:flex-row">
         <!-- Mobile: Sticky image top, scrolling text bottom -->
-        <div class="sm:hidden w-full">
-          <!-- Sticky Mobile Image Section - 40% -->
+        <div 
+          v-if="projects && projects.length > 0"
+          class="sm:hidden w-full mobile-projects-wrapper"
+          :style="{ height: `calc(${(projects.length - 1) * 60}vh + 40vh)`, marginBottom: '60vh' }"
+        >
+          <!-- Sticky Mobile Image Section - 40% - stops being sticky at bottom -->
           <div class="sticky top-0 h-[40vh] flex items-center justify-center bg-white z-10">
             <transition name="fade" mode="out-in">
               <img
@@ -735,7 +739,7 @@
           </div>
           
           <!-- Scrolling Mobile Text Sections - 60% -->
-          <div>
+          <div class="absolute top-[40vh] left-0 right-0">
             <div
               v-for="project in projects"
               :key="'mobile-' + project.name"
@@ -1179,6 +1183,11 @@ html {
   .project-section {
     scroll-snap-align: start;
     scroll-margin-top: 40vh;
+  }
+  
+  /* Mobile projects wrapper - height calculated to stop sticky at last project */
+  .mobile-projects-wrapper {
+    position: relative;
   }
 }
 
