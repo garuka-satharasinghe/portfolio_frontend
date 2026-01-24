@@ -977,7 +977,7 @@
         </div>
       </div>
       <div class="relative z-10 mt-8 border-t border-black/20 pt-4">
-        <p class="text-xs">&copy; 2025 {{ name }}. All rights reserved.</p>
+        <p class="text-xs">&copy; 2026 {{ name }}. All rights reserved.</p>
       </div>
       <h1
         class="absolute bottom-0 left-0 right-0 text-[4rem] sm:text-[5rem] md:text-[8rem] lg:text-[10rem] font-bold text-black/10 leading-[3rem] sm:leading-[4rem] md:leading-[7rem] lg:leading-[8rem] tracking-tight"
