@@ -717,55 +717,108 @@
     </section>
 
     <section class="projects-snap-container">
-      <div class="flex flex-col sm:flex-row snap-center">
-        <!-- Sticky Image -->
-        <div
-          class="sticky top-0 sm:w-1/2 max-sm:pt-12 max-sm:pb-4 max-sm:shadow-lg max-sm:shadow-white flex items-center justify-center sm:h-screen bg-white"
-        >
-          <transition name="fade" mode="out-in">
-            <img
-              v-if="currentPhoto"
-              :key="currentPhoto"
-              :src="currentPhoto"
-              alt="Teaser Image"
-              class="w-2/3 sm:w-3/4 rounded-lg opacity-100 scale-100 transition-opacity duration-500 ease-in-out"
-              loading="lazy"
-            />
-          </transition>
+      <div class="flex flex-col sm:flex-row">
+        <!-- Mobile: Sticky image top, scrolling text bottom -->
+        <div class="sm:hidden w-full">
+          <!-- Sticky Mobile Image Section - Top Half -->
+          <div class="sticky top-0 h-[50vh] flex items-center justify-center bg-white z-10">
+            <transition name="fade" mode="out-in">
+              <img
+                v-if="currentPhoto"
+                :key="currentPhoto"
+                :src="currentPhoto"
+                alt="Project Image"
+                class="max-w-[70%] max-h-[70%] object-contain rounded-lg"
+                loading="lazy"
+              />
+            </transition>
+          </div>
+          
+          <!-- Scrolling Mobile Text Sections -->
+          <div>
+            <div
+              v-for="project in projects"
+              :key="'mobile-' + project.name"
+              :data-photo="'data:' + project.img.contentType + ';base64,' + project.img.data"
+              class="h-[50vh] flex flex-col items-center justify-center p-8 bg-white project-section"
+            >
+              <p class="text-xl font-semibold text-gray-700 mb-4 text-center">
+                {{ project.name }}
+              </p>
+              <p class="text-sm text-gray-500 mb-6 text-center">{{ project.description }}</p>
+              <a
+                :href="project.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.28h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.51-2.23 3.06v5.6h-3v-10h2.88v1.36h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.58v5.6z"
+                  />
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- Text Sections -->
-        <div class="sm:w-1/2 ">
+        <!-- Desktop: Sticky Image with scrolling text -->
+        <div class="hidden sm:flex sm:flex-row w-full">
+          <!-- Sticky Image -->
           <div
-            v-for="project in projects"
-            :key="project.name"
-            :data-photo="
-              'data:' + project.img.contentType + ';base64,' + project.img.data
-            "
-            class="sm:h-screen flex flex-col items-center sm:items-start justify-center p-10 sm:p-20 sm:pl-5 project-section"
+            class="sticky top-0 sm:w-1/2 flex items-center justify-center sm:h-screen bg-white"
           >
-            <p class="text-xl font-semibold text-gray-700 mb-4">
-              {{ project.name }}
-            </p>
-            <p class="text-sm text-gray-500 mb-6">{{ project.description }}</p>
-            <a
-              :href="project.link"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+            <transition name="fade" mode="out-in">
+              <img
+                v-if="currentPhoto"
+                :key="currentPhoto"
+                :src="currentPhoto"
+                alt="Teaser Image"
+                class="w-3/4 rounded-lg opacity-100 scale-100 transition-opacity duration-500 ease-in-out"
+                loading="lazy"
+              />
+            </transition>
+          </div>
+
+          <!-- Text Sections -->
+          <div class="sm:w-1/2">
+            <div
+              v-for="project in projects"
+              :key="project.name"
+              :data-photo="
+                'data:' + project.img.contentType + ';base64,' + project.img.data
+              "
+              class="sm:h-screen flex flex-col items-center sm:items-start justify-center p-10 sm:p-20 sm:pl-5 project-section"
             >
-              <svg
-                class="w-5 h-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+              <p class="text-xl font-semibold text-gray-700 mb-4">
+                {{ project.name }}
+              </p>
+              <p class="text-sm text-gray-500 mb-6">{{ project.description }}</p>
+              <a
+                :href="project.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-300"
               >
-                <path
-                  d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.28h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.51-2.23 3.06v5.6h-3v-10h2.88v1.36h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.58v5.6z"
-                />
-              </svg>
-              LinkedIn
-            </a>
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.28h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.51-2.23 3.06v5.6h-3v-10h2.88v1.36h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.58v5.6z"
+                  />
+                </svg>
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </div>
